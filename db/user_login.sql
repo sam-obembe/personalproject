@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE emailaddress = $1
+SELECT * FROM users WHERE emailaddress = $1 AND hash = $2

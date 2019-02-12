@@ -1,0 +1,1 @@
+SELECT * FROM employer WHERE employer_email = $1

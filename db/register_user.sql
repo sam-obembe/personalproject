@@ -1,2 +1,2 @@
-INSERT INTO users (firstName, lastName, DOB, city, state, country, phoneNumber, emailAddress, socialNetworkURL, profilePictureURL, user_bio,hash) 
+INSERT INTO users (firstname, lastname, dob, city, state, country, phoneNumber, emailAddress, socialnetworkurl, profilepictureurl, user_bio,hash) 
 VALUES ($1,$2,$3,$4, $5, $6, $7, $8, $9, $10, $11, $12)
