@@ -1,6 +1,9 @@
 module.exports = {
   getUsers: async(req,res)=>{
-    
+    const db = req.app.get("db")
+    const jobID = req.params.jobID
+    const users = await db.get_users(Number(jobID))
+    res.status(200).send(users)
   },
 
   listjobs: async(req,res)=>{
@@ -28,19 +31,5 @@ module.exports = {
 }
 
 
-// sampleJobPost
-//  {
-//       "scope_id":" ",
-//       "price":" ",
-//       "duration": " ",
-//       "title" : " ",
-//       "description" : " "
-//  }
 
-// {
-//   "scope_id":"1",
-//   "price":"10000",
-//   "duration": "9 months",
-//   "title" : "Front end Web Developer",
-//   "description" : "Need a front end web developer to redesign the landing page for the Asgard residents portal."
-// }
+

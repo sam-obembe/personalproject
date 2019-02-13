@@ -112,43 +112,9 @@ module.exports = {
   }
 }
 
-//register user test data
-// {
-//   "firstname": "testFirst",
-//   "lastname": "testLast",
-//   "dob": "2000-01-01",
-//   "city": "Dallas",
-//   "state": "TX",
-//   "country": "USA",
-//   "phonenumber": "8978687191",
-//   "emailaddress": "testme@test.com",
-//   "socialnetworkurl": "noURL",
-//   "profilepictureurl": "gotNoFace",
-//   "user_bio": "Just a random test subject",
-//   "password": "testpassword"
-// }
 
 
-//register employer test data
-// {
-   
-//   "employer_name": "Odin and Sons",
-//   "employer_bio": "Biggest manufacturer in Valhala",
-//   "employer_number": "9990236767",
-//   "employer_email": "bigodin@valhala.nw",
-//   "city": "Dallas",
-//   "state": "Texas",
-//   "country": "USA",
-//    "password": "testpassword"
-// }
-//login user test data
-// {
-//   "email": "testme@test.com",
-//   "password": "testpassword"
-// }
 
-//login employer test data
-// {
-//   "email": "bigodin@valhala.nw",
-//   "password" : "testpassword"
-// }
+
+
+

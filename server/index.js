@@ -37,7 +37,7 @@ app.post("/logout",ac.logout)
 app.get("/search/jobs", uc.getjobs) //get all jobs that match a user's interests
 
 //employer endpoints
-app.get("/search/:jobID/users", ec.getUsers) //get all users interested in a job
+app.get("/search/job/users/:jobID", ec.getUsers) //get all users interested in a job
 app.get("/employer/postedJobs", ec.listjobs) //list all jobs
 app.post("/employer/jobs", ec.postJob) //post a job
 
