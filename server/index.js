@@ -20,7 +20,9 @@ app.use(session({
   secret: process.env.AGENT,
   resave: true,
   saveUninitialized: false,
-  expires: 1000*7*24*60*60
+  cookie: {
+    expires: 1000*7*24*60*60
+  }
 }))
 
 
@@ -35,10 +37,14 @@ app.post("/logout",ac.logout)
 
 //user endpoints
 app.get("/search/jobs", uc.getjobs) //get all jobs that match a user's interests
+app.post("/user/like/:jobID", uc.likeJob) //like a job, needs more work
+app.get("/user/matches", uc.getMatches)
 
 //employer endpoints
-app.get("/search/job/users/:jobID", ec.getUsers) //get all users interested in a job
+app.get(`/search/job/users/:jobID`, ec.getUsers) //get all users interested in a job
 app.get("/employer/postedJobs", ec.listjobs) //list all jobs
 app.post("/employer/jobs", ec.postJob) //post a job
+app.post("/employer/job/like/:userID", ec.likeUser) //like a user for a job
+app.get("/employer/job/matches", ec.getJobMatches)
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))
