@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import UserSignup from './UserSignup'
-import UserLogin from './UserLogin'
+import Login from './Login'
+import './auth.css'
 
 class UserAuth extends Component{
   constructor(){
@@ -10,7 +11,7 @@ class UserAuth extends Component{
     }
   }
 
-  signUpDisplay = ()=>{
+  formChange = ()=>{
     if(this.state.isLogin){
       this.setState({
         isLogin: false,
@@ -24,20 +25,36 @@ class UserAuth extends Component{
   }
 
   render(){
-
+    let buttonText
+   
     const form = ()=>{
       if(this.state.isLogin){
-        return <div><UserLogin/></div>
+        buttonText = "Register"
+      
+        return(
+          <div className = "authCard authCardLogin">
+            <h3>Worker</h3>
+            <Login/>
+            <button onClick = {()=>this.formChange()}>{buttonText}</button>
+          </div>
+        ) 
       } 
       else{
-        return <div><UserSignup/></div>
+        buttonText = "Sign in"
+        return (
+          <div className = "authCard authCardRegister">
+            <h3>Worker</h3>
+            <UserSignup/>
+            <div><button onClick = {()=>this.formChange()}>{buttonText}</button></div>
+            
+          </div>
+        )
       }
     }
 
     return(
-      <div>
+      <div className = "main">
         {form()}
-        <button onClick = {()=>this.signUpDisplay()}>Register</button>
       </div>
     )
   }

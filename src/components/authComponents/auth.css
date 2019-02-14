@@ -1,0 +1,58 @@
+.main{
+  width: 100%;
+  height: 100%;
+  background-image: url('../../landingImage.jpg');
+  background-size: cover;
+}
+
+.authCard{
+  background-color: #f9f9f9;
+  padding-top: 2%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10%;
+  opacity: 0.95
+}
+
+.authCardLogin{
+  width: 300px;
+  height: 300px;
+  margin-left: 40%;
+}
+
+.authCardRegister{
+  width: 50%;
+  height: 70vh;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  font-family: 'Courier Prime Sans'
+}
+
+input :hover{
+  scale: 1.5;
+}
+
+.signUpForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+}
