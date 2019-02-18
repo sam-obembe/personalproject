@@ -1,15 +1,20 @@
 module.exports = {
   getUsers: async(req,res)=>{
     const db = req.app.get("db")
+    //destructure jobID from req.params. It would be passed as a parameter in the sql query
     const {jobID} = req.params
     console.log(jobID)
+    //run a sql query to get the users whose interest's match a job's scope, using the jobID as a parameter. store the result in a users variable
     const users = await db.get_users(Number(jobID))
+    //send back result
     res.status(200).send(users)
   },
 
   listjobs: async(req,res)=>{
     const db = req.app.get('db')
+    //list all jobs posted by an employer using the employer's ID as a search parameter gotten from the session.
     const allJobs = await db.see_posted_jobs(req.session.user.id)
+    //send back the result of the sql query
     res.status(200).send(allJobs)
   },
 

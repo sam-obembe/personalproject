@@ -34,7 +34,7 @@ class UserAuth extends Component{
         return(
           <div className = "authCard authCardLogin">
             <h3>Worker</h3>
-            <Login/>
+            <Login userType = "user"/>
             <button onClick = {()=>this.formChange()}>{buttonText}</button>
           </div>
         ) 
