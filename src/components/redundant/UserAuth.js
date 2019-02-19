@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import UserSignup from './UserSignup'
-import Login from './Login'
+import UserSignup from '../authComponents/UserSignup'
+import Login from '../authComponents/Login'
 import './auth.css'
 
 class UserAuth extends Component{

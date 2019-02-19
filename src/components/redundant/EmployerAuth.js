@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Login from './Login'
-import EmployerSignup from './EmployerSignup'
+import Login from '../authComponents/Login'
+import EmployerSignup from '../authComponents/EmployerSignup'
 import {connect} from 'react-redux'
 import './auth.css'
 import axios from 'axios';

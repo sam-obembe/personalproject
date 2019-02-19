@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs")
 module.exports = {
   //user signup controller
   userSignup: async (req,res)=>{
-    const {firstname, lastname, dob, city, state, country, phonenumber, emailaddress, socialnetworkurl, profilepictureurl, user_bio,password} = req.body
+    const {firstname, lastname, dob, city, state, country, phonenumber, emailaddress, password} = req.body
     const db = req.app.get("db")
     //assign registered details to variable called new user
     const findUser = await db.find_user(emailaddress)
@@ -14,7 +14,7 @@ module.exports = {
     //if this is a new user, hash the given password from the input form and push all the details to the database.
     const salt = await  bcrypt.genSaltSync(12)
     const hash = await  bcrypt.hashSync(password,salt)
-    const newUser = await db.register_user(firstname, lastname, dob, city, state, country, phonenumber, emailaddress, socialnetworkurl, profilepictureurl, user_bio,hash)
+    const newUser = await db.register_user(firstname, lastname, dob, city, state, country, phonenumber, emailaddress,  hash)
     //once new user has been created, login with the credentials
     const user = await db.user_login(emailaddress,hash)
     const loggedin = user[0]
@@ -30,7 +30,7 @@ module.exports = {
 
   //employer signup controller
   employerSignup: async (req,res)=>{
-    const{employer_name, employer_bio, employer_number, employer_email, city, state, country, password} = req.body
+    const{employer_name, employer_number, employer_email, city, state, country, password} = req.body
     const db = req.app.get("db")
     const findEmployer = await db.find_employer(employer_email)
 
@@ -41,7 +41,7 @@ module.exports = {
       const salt = await bcrypt.genSaltSync(12)
       const hash = await bcrypt.hashSync(password,salt)
       //assign registration details to variable called new employer and insert into database
-      const newEmployer = await db.register_employer(employer_name, employer_bio, employer_number, employer_email, city, state, country, hash)
+      const newEmployer = await db.register_employer(employer_name,  employer_number, employer_email, city, state, country, hash)
       const employer = await db.employer_login(employer_email,password)
       const loggedin = employer[0]
       req.session.user = {

@@ -28,5 +28,13 @@ module.exports = {
     const matches = await db.get_user_matches(id)
     //send back an object with the details of the jobs that match the user.
     res.status(200).json(matches)
+  },
+
+  //get user details from database using query and user ID from sessions
+  getDetails : async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const det = await db.get_user_details(id)
+    res.status(200).send(det)
   }
 }

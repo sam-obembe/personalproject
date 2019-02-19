@@ -39,7 +39,7 @@
 
 input {
   width: 250px;
-  height: 30px;
+  height: 15px;
   border-radius: 5px;
   margin-bottom: 15px;
   margin-top: 0px;
@@ -50,9 +50,18 @@ input :hover{
   scale: 1.5;
 }
 
+textarea{
+  width: 250px;
+  height: 80px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+  font-family: 'Courier Prime Sans'
+}
+
 .signUpForm{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80%;
+  height: 600px;
 }

@@ -1,23 +1,77 @@
-import React from 'react'
+import React, {Component} from 'react'
+import axios from 'axios';
+//import {connect} from 'react-redux'
+//import {employerRegistration} from '../../ducks/reducers/employerReducer'
 
+class  EmployerSignup extends Component {
+  constructor(){
+    super()
+      this.state = {
+        employer_name: "",
+        employer_number: "",
+        employer_email: "",
+        city: "",
+        state: "",
+        country: "",
+        password: "",
+      }
+    
+  }
 
-const EmployerSignup = ()=>{
-  return(
-    <div>
-      <form className = "signUpForm">
-          <input placeholder = "Company or Employer Name" type = "text"/>
-          <input placeholder = "Bio" type = "text"/>
-          <input placeholder = "City" type = "text"/>
-          <input placeholder = "State" type = "text"/>
-          <input placeholder = "Country" type = "text"/>        
-          <input placeholder = "Email" type = "text"/>     
-          <input placeholder = "Phone Number" type = "text"/>
-          <input placeholder = "Password" type = "password"/>
-          <div><button>Register</button></div>
-      </form>
-      
-    </div>
-  )
+  inputChange = (e)=>{
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  submission = ()=>{
+    
+    axios.post("/register/employer", this.state).then((res)=>{
+      console.log(res.data)
+      window.location = "/home"
+    }).catch(()=>window.location = "/auth" )
+
+    this.setState({
+      employer_name: "",
+      employer_number: "",
+      employer_email: "",
+      city: "",
+      state: "",
+      country: "",
+      password: "",
+    }
+    )
+  }
+
+  render(){
+    return(
+      <div>
+        <form className = "signUpForm">
+
+        <input placeholder = "Name" type = "text" name = "employer_name" onChange = {(e)=> this.inputChange(e)} value = {this.state.employer_name}/>
+
+          <input placeholder = "City" type = "text" name = "city" onChange = {(e)=>this.inputChange(e)} value = {this.state.city}/>
+
+          <input placeholder = "State" type = "text" name = "state" onChange = {(e)=>this.inputChange(e)} value = {this.state.state}/>
+
+          <input placeholder = "Country" type = "text" name = "country" onChange = {(e)=>this.inputChange(e)} value = {this.state.country} />  
+
+          <input placeholder = "Email" type = "text" name = "employer_email" onChange = {(e)=>this.inputChange(e)} value = {this.state.employer_email} />     
+
+          <input placeholder = "Phone Number" type = "text" name = "employer_number" onChange = {(e)=>this.inputChange(e)} value = {this.state.employer_number} />
+
+          <input placeholder = "Password" type = "password" name = "password" onChange = {(e)=>this.inputChange(e)} value = {this.state.password}/>
+            
+        </form>
+        <button onClick = {()=>this.submission()}>Register</button>
+        
+      </div>
+    )
+  }
+  
 }
+
+// function mapStateToProps(state){
+//   return state.employerReducer
+// }
+
 
 export default EmployerSignup
