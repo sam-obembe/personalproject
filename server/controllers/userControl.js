@@ -36,5 +36,12 @@ module.exports = {
     const {id} = req.session.user
     const det = await db.get_user_details(id)
     res.status(200).send(det)
+  },
+
+  getLikes: async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const likes = await db.get_user_likes(id)
+    res.status(200).send(likes)
   }
 }

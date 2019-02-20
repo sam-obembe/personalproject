@@ -3,7 +3,7 @@ import Login from './Login'
 import EmployerSignup from './EmployerSignup'
 import UserSignup from './UserSignup'
 import {connect} from 'react-redux'
-import './auth.css'
+import '../../styles/auth.css'
 //import '../../materialize.css'
 import axios from 'axios';
 

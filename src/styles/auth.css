@@ -1,12 +1,12 @@
 .main{
   width: 100%;
   height: 100%;
-  background-image: url('../../landingImage.jpg');
+  /* background-image: url('../../landingImage.jpg'); */
   background-size: cover;
 }
 
 .authCard{
-  background-color: #f9f9f9;
+  background-color: white;
   padding-top: 2%;
   border-radius: 10px;
   display: flex;

@@ -1,0 +1,54 @@
+.main{
+  width: 100vw;
+  height: 100vh;
+  /* background-image: url('../../landingImage.jpg'); */
+  background-color: #f9f9f9;
+  background-size: cover;
+  display: flex;
+  justify-content: space-around
+}
+
+.tile{
+  width: 400px;
+  height: 500px;
+  background: #4DA0B0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #D39D38, #4DA0B0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #D39D38, #4DA0B0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.miniCard{
+  height: 200px;
+  width: 500px;
+  background-color: white;
+}
+
+.jobSuggestContainer {
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.jobcard{
+  width: 400px;
+  height: 450px;
+  position: relative;
+  margin-left: 5px;
+  margin-top: 5px;
+  background-color: white;
+  border-radius: 5px
+}
+
+.iconSpace{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

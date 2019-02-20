@@ -1,5 +1,6 @@
 import React, {Component } from 'react'
-import JobCard from './JobCard'
+//import JobCard from './JobCard'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateSuggestions} from '../../ducks/reducers/userReducer'
 
@@ -9,19 +10,13 @@ class JobSuggestions extends Component{
     this.props.updateSuggestions()
   }
 
-  displayCards(){
-    this.props.user_suggestions.map((sugg,i)=>{
-      return(
-        <JobCard key = {i} jobtit = {sugg.title} jobdes = {sugg.description} jobdur={sugg.duration} jobprice = {sugg.price}/>
-      )
-    })
-  }
-
   render(){
     return(
-      <div>
-        
-      </div>
+        <Link to = "/jobSuggestions">
+          <div className = "tile">
+            <h1>Click to see Suggestions</h1>
+          </div>
+        </Link>
     )
   }
 }

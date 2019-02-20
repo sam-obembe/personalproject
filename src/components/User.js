@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import JobSuggestions from './userComponents/JobSuggestions'
-import '../materialize.css'
+import Likes from './userComponents/Likes'
 import {connect} from 'react-redux'
 import {setUserInfo} from '../ducks/reducers/userReducer'
-
+import '../styles/user.css'
+// import '../styles/icons.css'
 
 class User extends Component{
   componentDidMount(){
@@ -15,7 +16,11 @@ class User extends Component{
     return(
       <div>
         <h1>Welcome {this.props.firstname}</h1>
-        <JobSuggestions/>
+        <div className = "main">
+          
+          <JobSuggestions/>
+          <Likes/>
+        </div>
       </div>
     )
   }

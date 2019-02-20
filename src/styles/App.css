@@ -1,12 +1,12 @@
-#App {
+ #App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  background-color: #f9f9f9;
-  height: 100vh;
-}
-
+  justify-content: space-between; 
+  background-color: #f9f9f9; 
+  height: 100vh; 
+  width: 100vw 
+}  
 .landing{
   background-image: url('./landingImage.jpg');
   background-size: cover;

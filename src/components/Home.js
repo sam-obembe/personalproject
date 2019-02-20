@@ -16,7 +16,7 @@ class Dashboard extends Component{
   render(){
     return(
       <div>
-        <h1>Welcome Home</h1>
+        {/* <h1>Welcome Home</h1> */}
        {this.toShow()}
       </div>
 
