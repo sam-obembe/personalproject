@@ -1,6 +1,6 @@
 
 const initialState = {
-  isEmployer: false,
+  isEmployer: "",
   isAdmin: false
 }
 
@@ -9,13 +9,13 @@ const IS_EMPLOYER = "IS_EMPLOYER"
 const IS_NOT_EMPLOYER = "IS_NOT_EMPLOYER"
 
 //actionCreators
-export function isEmployer(){
+export function setEmployer(){
   return {
     type: IS_EMPLOYER,
   }
 }
 
-export function isNotEmployer(){
+export function setNotEmployer(){
   return{
     type: IS_NOT_EMPLOYER
   }

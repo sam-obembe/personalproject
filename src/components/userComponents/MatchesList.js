@@ -6,24 +6,23 @@ function mapStateToProps(state){
   return state.userReducer
 }
 
-const LikeList = (props)=>{
+const MatchesList = (props)=>{
   return(
-      <div>
-        <Link to ="/Home">Back</Link>
-        {props.userLikedJobs.map((job,i)=>{
+    <div>
+      <Link to = "/home">Back</Link>
+      {props.userMatches.map((job,i)=>{
           return(
             <div key = {i} className = "miniCard">
               <h3 > {job.title}, {job.duration}, {job.price} </h3>
               <p>{job.description}</p>
             </div>
-          )
-        })}
-      </div>
+          )})}
+    </div>
   )
 }
 
-export default connect(mapStateToProps) (LikeList)
+export default connect(mapStateToProps)(MatchesList)
 
-/**
- This renders a list of jobs a user has liked . The list is gotten from an array userLikedJobs which is located in the userReducer. 
- */
+/*
+This maps over a list of user matches, located in the userReducer under userMatches.
+*/

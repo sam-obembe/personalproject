@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 
 class UserSignup extends Component {
@@ -15,7 +16,8 @@ class UserSignup extends Component {
       country: "",
       phonenumber: "",
       emailaddress: "",
-      password: ""
+      password: "",
+      isSuccess: false
     }
   }
   
@@ -24,13 +26,7 @@ class UserSignup extends Component {
   }
 
   submission = ()=>{
-    axios.post("/register/user",this.state).then(res=>{
-      console.log(res.data)
-      window.location = "/home"
-    }).catch(res=>{
-      console.log(res.data)
-      window.location = "/auth"
-    })
+    axios.post("/register/user",this.state).then(res=>this.setState({isSuccess: true})).catch(res=> alert("Please check credentials and try again"))
     this.setState({
       firstname : "",
       lastname : "", 
@@ -45,6 +41,9 @@ class UserSignup extends Component {
   }
 
   render(){
+  if(this.state.isSuccess){
+    return <Redirect to = "/home"/>
+  }
   const{firstname,lastname,dob,city,state,country,phonenumber,emailaddress,password} = this.state
   return(
     <div className = "signUpForm">

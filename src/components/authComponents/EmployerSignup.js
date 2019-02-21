@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 //import {connect} from 'react-redux'
 //import {employerRegistration} from '../../ducks/reducers/employerReducer'
 
@@ -14,6 +15,7 @@ class  EmployerSignup extends Component {
         state: "",
         country: "",
         password: "",
+        isSuccess: false
       }
     
   }
@@ -24,10 +26,7 @@ class  EmployerSignup extends Component {
 
   submission = ()=>{
     
-    axios.post("/register/employer", this.state).then((res)=>{
-      console.log(res.data)
-      window.location = "/home"
-    }).catch(()=>window.location = "/auth" )
+    axios.post("/register/employer", this.state).then(()=>this.setState({isSuccess:true})).catch(()=> alert("Please check form again and refill") )
 
     this.setState({
       employer_name: "",
@@ -42,6 +41,9 @@ class  EmployerSignup extends Component {
   }
 
   render(){
+    if(this.state.isSuccess){
+      return <Redirect to = "/home"/>
+    }
     return(
       <div>
         <form className = "signUpForm">
@@ -68,10 +70,5 @@ class  EmployerSignup extends Component {
   }
   
 }
-
-// function mapStateToProps(state){
-//   return state.employerReducer
-// }
-
 
 export default EmployerSignup

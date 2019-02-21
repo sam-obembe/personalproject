@@ -1,8 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {isEmployer, isNotEmployer} from '../ducks/reducers/accountTypeReducer'
-//import routes from '../routes'
+import {setEmployer, setNotEmployer} from '../ducks/reducers/accountTypeReducer'
 
 function mapStateToProps(props){
   return props
@@ -12,8 +11,8 @@ const Header = (props)=>{
   return(
     <div className = "header">
       <Link to = "/" >Home</Link>
-      <Link to = "/auth" onClick = {props.isNotEmployer} >Looking for Jobs</Link>
-      <Link to = "/auth" onClick = {props.isEmployer}>Looking to hire</Link>
+      <Link to = "/auth" onClick = {()=>props.setNotEmployer()} >Looking for Jobs</Link>
+      <Link to = "/auth" onClick = {()=>props.setEmployer()}>Looking to hire</Link>
     </div>
   )
 }
@@ -21,4 +20,4 @@ const Header = (props)=>{
 
 
 
-export default connect(mapStateToProps,{isEmployer,isNotEmployer}) (Header)
+export default connect(mapStateToProps,{setEmployer,setNotEmployer}) (Header)

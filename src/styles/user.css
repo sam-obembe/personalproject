@@ -1,11 +1,12 @@
-.main{
+.usermain{
   width: 100vw;
   height: 100vh;
-  /* background-image: url('../../landingImage.jpg'); */
+   /* background-image: url('../../landingImage.jpg');  */
   background-color: #f9f9f9;
   background-size: cover;
   display: flex;
-  justify-content: space-around
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .tile{
@@ -20,29 +21,31 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin-top: 20px;
 }
 
 .miniCard{
-  height: 200px;
+  height: 100px;
   width: 500px;
   background-color: white;
+  display: block;
 }
 
 .jobSuggestContainer {
   /* height: 100vh; */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  /* margin-top: 30px; */
+  /* flex-wrap: wrap; */
 }
 
 .jobcard{
   width: 400px;
   height: 450px;
-  position: relative;
-  margin-left: 5px;
-  margin-top: 5px;
+  /* position: relative; */
+  /* margin-left: 5px; */
+  /* margin-top: 5px; */
   background-color: white;
   border-radius: 5px
 }

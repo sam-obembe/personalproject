@@ -1,23 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
-import {getUserLikes} from '../../ducks/reducers/userReducer'
-
-class Likes extends Component {
-  componentDidMount(){
-    this.props.getUserLikes()
-  }
-  render(){
-    console.log(this.props.userLikedJobs)
-    return(
-      <div className = "tile">
-
-      </div>
-    )
-  }
-}
+import {Link} from 'react-router-dom'
 
 function mapStateToProps(state){
   return state.userReducer
 }
 
-export default connect(mapStateToProps,{getUserLikes}) (Likes)
+const Likes = (props) => {
+  return(
+    <Link to = "/userLikes">
+      <div className = "tile">
+        <h3>See jobs you liked</h3>
+      </div>
+    </Link>
+  )
+}
+
+
+export default connect(mapStateToProps) (Likes)

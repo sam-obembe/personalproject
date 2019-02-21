@@ -1,14 +1,13 @@
 
 const employerDetails ={
-  employerID: "",
-  employerName: "",
-  employerBio: "",
-  employerNumber: "",
-  employerEmail: "",
-  employerCity: "",
-  employerState: "",
-  employerCountry: "",
-  password: "",
+  employer_id: "",
+  employer_name: "",
+  employer_bio: "",
+  employer_number: "",
+  employer_email: "",
+  city: "",
+  state: "",
+  country: "",
   jobs: []
 }
 

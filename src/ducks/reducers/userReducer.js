@@ -24,6 +24,8 @@ const userDet = {
   const SET_USER_INFO = "SET_USER_INFO"
   const UPDATE_SUGGESTIONS = "UPDATE_SUGGESTIONS"
   const GET_USER_LIKES = "GET_USER_LIKES"
+  const GET_USER_MATCHES = "GET_USER_MATCHES"
+ 
 
   //Action creator
   export const setUserInfo = ()=>{
@@ -47,6 +49,14 @@ const userDet = {
     }
   }
 
+  export const getUserMatches = ()=>{
+    return{
+      type: GET_USER_MATCHES,
+      payload: axios.get("/user/matches")
+    }
+  }
+
+
   export default function userReducer(state =userDet, action){
     switch(action.type){
       case `${SET_USER_INFO}_FULFILLED`: 
@@ -56,7 +66,10 @@ const userDet = {
         return Object.assign({},state,{user_suggestions:action.payload.data});
 
       case `${GET_USER_LIKES}_FULFILLED`:
-        return Object.assign({},state,{userLikedJobs:action.payload.data});  
+        return Object.assign({},state,{userLikedJobs:action.payload.data});
+      
+      case `${GET_USER_MATCHES}_FULFILLED`:
+        return Object.assign({},state, {userMatches:action.payload.data});
       default : return state
     }
 

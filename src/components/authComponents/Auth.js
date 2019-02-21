@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import Login from './Login'
 import EmployerSignup from './EmployerSignup'
 import UserSignup from './UserSignup'
+import Header from '../Header'
+import {Redirect} from 'react-router-dom'
+import {setEmployer} from '../../ducks/reducers/accountTypeReducer'
 import {connect} from 'react-redux'
 import '../../styles/auth.css'
-//import '../../materialize.css'
 import axios from 'axios';
 
 class Auth extends Component {
@@ -14,14 +16,10 @@ class Auth extends Component {
       isLogin: true,
       email: "",
       password: "",
+      isSuccess: false
     }
   }
 
-  // componentDidMount(){
-  //   //set isEmployer in state to the isEmployer value in redux
-  //   // this.setState({isEmployer:this.props.isEmployer})
-  // }
-  //toggle isLogin to true or false which will conditionally render login form or registration form 
   loginOrRegister = ()=>{
     if(this.state.isLogin){ this.setState({isLogin:false}) } 
     else{ this.setState({isLogin:true}) }
@@ -29,28 +27,24 @@ class Auth extends Component {
 
   inputHandle = (e)=>{ this.setState({[e.target.name]: e.target.value}) }
 
-  //submit login details to either employer end point or user endpoint
   submission=()=>{
     const {email,password} = this.state
-    //if this is an employer, post the email and password to the employer path
+
     if(this.props.isEmployer){
-      axios.post("/login/employer",{email,password}).then(res=>{
-        console.log(res.data)
-        //after successful login, redirect to the dashboard on the /home path
-        window.location = "/home"
-        //for unsuccessful login, redirect to the auth page
-      }).catch(()=> window.location = "/auth")
-    } 
+    
+      axios.post("/login/employer",{email,password}).then(()=> this.setState({isSuccess:true})).catch(()=> alert("Wrong username or password"))
+    }
+
     else{
-      axios.post("/login/user",{email,password}).then(()=> window.location = "/home").catch(()=> window.location = "/auth") 
+      axios.post("/login/user",{email,password}).then(()=> this.setState({isSuccess:true})).catch(()=> alert("wrong username or password")) 
     }
   }
 
-  //dynamically render the right form based of isLogin and isEmployer values
+  
   formRender = ()=>{
     let text = this.props.isEmployer? "Employer":"User"
     let buttonText = this.state.isLogin? "Register":"Login"
-    //if this is an employer trying to login, return the Login form an pass down the following props
+
     if(this.props.isEmployer && this.state.isLogin){
       return (
         <div className = "authCard authCardLogin">
@@ -61,7 +55,7 @@ class Auth extends Component {
       )
     }
 
-    //if this is an Employer and this person is not trying to login, render the Employer Signup form
+
     else if(this.props.isEmployer && this.state.isLogin===false){
       return(
         <div className = "authCard authCardRegister">
@@ -72,7 +66,7 @@ class Auth extends Component {
         </div>
       )
     } 
-    //if this is not an employer, ie a worker and this person is trying to login, render the login form and pass in these props
+
     else if(!this.props.isEmployer && this.state.isLogin){
       return(
         <div className = "authCard authCardLogin">
@@ -82,7 +76,7 @@ class Auth extends Component {
         </div>
       )
     }
-    //if the person is not an employer and is not trying to login, ie a worker trying to register, render the User Signup form 
+
     else if(!this.props.isEmployer && !this.state.isLogin){
       return(
         <div className = "authCard authCardRegister">
@@ -95,10 +89,12 @@ class Auth extends Component {
   }
 
   render(){
-    
+    if(this.state.isSuccess){
+      return <Redirect to= "/home"/>
+    }
     return(
       <div className = "main">
-        {/* call the render function here and it will show the right form depending on the conditions */}
+      <Header/>
         {this.formRender()}
       </div>
     )
@@ -109,4 +105,37 @@ function mapStateToProps(state){
   return state.accountTypeReducer
 }
 
-export default connect(mapStateToProps)(Auth)
+export default connect(mapStateToProps,{setEmployer})(Auth)
+
+/* 
+In this component, we import three other components, EmployerSignup, UserSignup and Login. 
+EmployerSignup and UserSignup are class based components which render registration forms for the employer and user.
+Login is a functional component which will accept props from this component. 
+The styling for this component is achieved through auth.css
+In the initial state for this component, we have isLogin, email and password. isLogin is defaulted to true while the others are empty strings.
+
+LOGIN OR REGISTER FUNCTION
+loginOrRegister is a function that toggles isLogin from 'true' to 'false' and vice versa whenever it is invoked. This will be passed to an onClick attribute.
+inputHandle tracks user input. The 'name' attributes on the input fields are set to match the key values in our local state i.e 'email', 'password'.
+
+SUBMISSION FUNCTION
+submission is a function that takes the email and password from the local state. 
+Based on the isEmployer value in the accountTypeReducer file, if isEmployer is true, an axios post request is made to the employer login endpoint "/login/employer" wiith the email and password passed into the body of the request as an object. When the request is successfully completed, the window is redirected to the home page, <Home/> component.
+If isEmployer in accountTypeReducer is false, then the post request is made to the user login endpoint. When succesfully completed, the window is redirectoed to the home page, <Home/> component. 
+The submission function is passed as props to the <Login/> functional component
+
+FORM RENDER FUNCTION
+The formRender() function is very long. 
+The variable 'text' is a conditional string that references isEmployer from accountTypeReducer. If isEmployer is true , the text to be displayed is "Employer" or else the text to be displayed is "User".
+
+The variable buttonText is also conditional. If isLogin, which is in the local component state, has a value of 'true', then the button text will be 'Register' and if it is false, the button text should be 'Login'. This is applied to a button that toggles between registration forms and login forms. 
+
+If isEmployer = true and isLogin = true, return an employer login form passing in all the necessary attributes and functions.
+If isEmployer = true and isLogin = false, return the employer signup form, <EmployerSignup/> with the necessary attributes.
+If isEmployer = false and isLogin = true, return the user login form, passing in all the necessary attibutes and functions.
+If isEmployer = false and isLogin = false, return the user signup form , <UserSignup/> with the necessary attributes. 
+
+The forms are wrapped in divs and styled using classes from auth.css in the styles folder.
+
+In the body, render a <Header/> component and the result of the formRender function invoked, thisformRender()
+*/
