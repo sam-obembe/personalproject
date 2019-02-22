@@ -15,7 +15,7 @@ const JobSuggestions =(props)=>{
        
       <Link to = "/jobSuggestions">
         <div className = "tile">
-            <h1>Click to see Suggestions</h1>
+            <h2>Job Suggestions</h2>
         </div>
       </Link>
       </div>

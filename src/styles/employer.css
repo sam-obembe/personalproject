@@ -48,3 +48,40 @@ h1, h2, p {
 .jobCreate select{
   border: none;
 }
+
+.employerJobCard {
+  background-color: #1f1c1c;
+  color: white;
+  width: 550px;
+  height:300px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.employerJobCard button{
+  color: white;
+}
+
+.workerCard{
+  height: 400px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px grey;
+  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.workerCard img{
+  width: 75px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  margin-left: 110px;
+  margin-top: 20px;
+}

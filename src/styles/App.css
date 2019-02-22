@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 h1, h2 {
   font-family: 'Raleway', sans-serif
+  /*  */
 }
 
 p{
@@ -21,7 +23,7 @@ p{
 .landing{
   /* background-image: url('./landingImage.jpg');
   background-size: cover; */
-  background-image: linear-gradient(to right, rgb(27, 25, 25) 0%, #343d46 100%);
+  background-image: linear-gradient(to top, rgb(221, 218, 218) 0%, #e4e8ec 100%);
   width: 100vw;
   height: 100vh;
   color: white;
@@ -34,7 +36,7 @@ p{
 }
 
 .landingText{
-  background-color: rgba(255,255,255,1);
+  background-color: rgb(34, 33, 33);
   width: 400px;
   height: 500px;
   padding-top: 2%;
@@ -42,11 +44,12 @@ p{
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Arial';
 }
 
 .landingText h1{
-  color: black
+  color: white;
+  font-family: 'Pacifico', cursive;
+  font-style:italic;
 }
 
 .header{
@@ -70,21 +73,32 @@ p{
   height:20%;
   text-decoration: none;
   opacity: 0.8;
+  /* color: white; */
+  opacity: 1;
+ 
+}
+
+
+#workerAuthNav{
+  background-color: transparent;
+  text-decoration: none;
   color: white;
 }
 
-.authNav:hover{
-  opacity: 1;
-}
-
-#workerAuthNav{
-  background-color: #343d46;
-  text-decoration: none;
-}
-
 #employerAuthNav{
-  background-color: midnightblue;
+  background-color: transparent;
 }
+
+#workerAuthNav:hover{
+  animation:authNavAnimation 2s;
+}
+
+#employerAuthNav:hover{
+  /* background-color:white; */
+  animation: authNavAnimation 2s
+}
+
+
 
 button{
   width: 150px;
@@ -107,4 +121,7 @@ a {
   color: #000000;
 }
 
+@keyframes authNavAnimation{
+  to {background-color: #ffffff}
+}
 

@@ -10,6 +10,10 @@ import LikeList from './components/userComponents/LikeList';
 import MatchesList from './components/userComponents/MatchesList'
 import Profile from './components/userComponents/Profile'
 import JobCreateForm from './components/employerComponents/JobCreateForm'
+import JobList from './components/employerComponents/JobList'
+import Suggestions from './components/employerComponents/Suggestions'
+
+
 
 export default(
   
@@ -20,7 +24,10 @@ export default(
       <Route exact path = "/userlikes" component  = {LikeList}/>
       <Route exact path = "/usermatches" component  = {MatchesList}/>
       <Route exact path = "/userProfile" component  = {Profile}/>
+      <Route exact path = "/userProfile" component  = {Profile}/>
       <Route exact path = "/employer/jobCreate" component = {JobCreateForm}/>
+      <Route exact path = "/employer/jobList" component = {JobList}/>
+      <Route exact path = "/employer/jobList/suggestions" component = {Suggestions}/>
       {/* <Route exact path = "/user" component = {UserAuth}/>
       <Route exact path = "/employer" component = {EmployerAuth}/> */}
       <Route exact path = "/" component = {Landing}/>

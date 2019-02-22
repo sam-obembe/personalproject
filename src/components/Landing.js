@@ -13,16 +13,16 @@ class Landing extends Component{
         <Header/>
         <div className = "landingText">
 
-          <h1>Welcome To Your Next Opportunity</h1>
+          <h1>Opportunity Knocks</h1>
         
           <div className = "authNav" id = "workerAuthNav">
-            <Link to = "/auth" onClick= {()=>this.props.setNotEmployer()}>
-              <h1>Workers</h1>
-            </Link>
+          <h2><Link to = "/auth" onClick= {()=>this.props.setNotEmployer()}>
+              Workers
+            </Link></h2>
           </div>
           
           <div className = "authNav" id = "employerAuthNav" >
-            <h1><Link to = "/auth" onClick = {()=>this.props.setEmployer()} >Employers</Link></h1>
+            <h2><Link to = "/auth" onClick = {()=>this.props.setEmployer()} >Employers</Link></h2>
           </div>
 
         </div>

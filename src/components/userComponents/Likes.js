@@ -10,7 +10,7 @@ const Likes = (props) => {
   return(
     <Link to = "/userLikes">
       <div className = "tile">
-        <h3>See jobs you liked</h3>
+        <h2>See jobs you liked</h2>
       </div>
     </Link>
   )

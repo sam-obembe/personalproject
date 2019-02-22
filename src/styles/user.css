@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
-
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 h1, h2, p {
   font-family: 'Work Sans', sans-serif
 }
@@ -26,6 +26,12 @@ h1, h2, p {
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
+  animation: tileFadeIn 2s;
+  
+}
+
+.tile h2{
+  font-family: 'Pacifico', cursive
 }
 
 .miniCard{
@@ -51,7 +57,8 @@ h1, h2, p {
   /* margin-left: 5px; */
   /* margin-top: 5px; */
   background-color: white;
-  border-radius: 5px
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .iconSpace{
@@ -63,6 +70,11 @@ h1, h2, p {
 i{
   margin-left:0;
   margin-right: 0;
+}
+
+@keyframes tileFadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
 
