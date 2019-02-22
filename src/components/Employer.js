@@ -1,13 +1,28 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {getEmployerInfo,getPostedJobs} from '../ducks/reducers/employerReducer'
+import JobCreate from '../components/employerComponents/JobCreate'
+import '../styles/employer.css'
 
 class Employer extends Component{
+  componentDidMount(){
+    this.props.getEmployerInfo()
+    this.props.getPostedJobs()
+  }
   render(){
     return(
       <div>
-        <h1>I am the employer component</h1>
+        <h2>Welcome {this.props.employer_name}</h2>
+        <div className = "employermain">
+          <JobCreate/>
+        </div>
       </div>
     )
   }
 }
 
-export default Employer;
+function mapStateToProps(state){
+  return state.employerReducer
+}
+
+export default connect(mapStateToProps,{getEmployerInfo,getPostedJobs})(Employer)

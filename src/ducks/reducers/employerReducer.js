@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 const employerDetails ={
   employer_id: "",
   employer_name: "",
@@ -12,42 +12,32 @@ const employerDetails ={
 }
 
 //action types
-// const EMPLOYER_REGISTER_INPUT = "EMPLOYER_REGISTER_INPUT"
-// const EMPLOYER_SUBMIT_REGISTRATION = "EMPLOYER_SUBMIT_REGISTRATION"
-
-// function reset(){
-//   for(let i in employerDetails){
-//     employerDetails[i] = ""
-//   }
-// }
-
-
+const SET_EMPLOYER_INFO = "SET_EMPLOYER_INFO"
+const GET_POSTED_JOBS = "GET_POSTED_JOBS"
 //action creators
-// export function employerRegistration(input){
-//   return{
-//     type: EMPLOYER_REGISTER_INPUT,
-//     name: input.target.name,
-//     payload: input.target.value,
-//   }
-// }
+export const getEmployerInfo = ()=>{
+  return{
+    type: SET_EMPLOYER_INFO,
+    payload: axios.get("/employer/info")
+  }
+}
 
-// export function submitRegistration(){
-//   return{
-//     type: EMPLOYER_SUBMIT_REGISTRATION,
-//   }
-// }
+export const getPostedJobs = ()=>{
+  return{
+    type: GET_POSTED_JOBS,
+    payload: axios.get("/employer/postedJobs")
+  }
+}
+
+
 
 export default function employerReducer(state = employerDetails, action){
   switch(action.type){
-    // case EMPLOYER_REGISTER_INPUT: 
-    //   let name = action.name
-    //   return {
-    //   ...state, [name]:action.payload
-    //   };
-    // case EMPLOYER_SUBMIT_REGISTRATION:
-    //   return{
-    //     ...state, 
-    //   }
+    case `${SET_EMPLOYER_INFO}_FULFILLED`:
+      return Object.assign({},state, action.payload.data[0])
+    case `${GET_POSTED_JOBS}_FULFILLED`:
+      return Object.assign({},state,{jobs:action.payload.data})
+
     default: return state
   }
   

@@ -48,6 +48,19 @@ module.exports = {
     const {jobID} = req.body
     const matches = await db.get_job_matches(jobID)
     res.status(200).json(matches)
+  },
+
+  getDetails: async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const info = await db.get_employer_details(id)
+    res.status(200).send(info)
+  },
+
+  getJobScopes : async(req,res)=>{
+    const db = req.app.get('db')
+    const scopes = await db.get_job_scopes()
+    res.status(200).send(scopes)
   }
 }
 

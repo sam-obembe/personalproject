@@ -1,7 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setEmployer, setNotEmployer} from '../ducks/reducers/accountTypeReducer'
+import '../styles/App.css'
 
 function mapStateToProps(props){
   return props
@@ -10,9 +11,9 @@ function mapStateToProps(props){
 const Header = (props)=>{
   return(
     <div className = "header">
-      <Link to = "/" >Home</Link>
-      <Link to = "/auth" onClick = {()=>props.setNotEmployer()} >Looking for Jobs</Link>
-      <Link to = "/auth" onClick = {()=>props.setEmployer()}>Looking to hire</Link>
+      <NavLink to = "/" ><p>Home</p></NavLink>
+      <NavLink to = "/auth" onClick = {()=>props.setNotEmployer()} > <p>Looking for Jobs</p></NavLink>
+      <NavLink to = "/auth" onClick = {()=>props.setEmployer()}><p>Looking to hire</p></NavLink>
     </div>
   )
 }
