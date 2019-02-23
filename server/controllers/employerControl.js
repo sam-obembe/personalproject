@@ -3,7 +3,7 @@ module.exports = {
     const db = req.app.get("db")
     //destructure jobID from req.params. It would be passed as a parameter in the sql query
     const {jobID} = req.params
-    console.log(jobID)
+    // console.log(jobID)
     //run a sql query to get the users whose interest's match a job's scope, using the jobID as a parameter. store the result in a users variable
     const users = await db.get_users(Number(jobID))
     //send back result
@@ -45,9 +45,11 @@ module.exports = {
 
   getJobMatches: async(req,res)=>{
     const db = req.app.get('db')
-    const {jobID} = req.body
+    const {jobID} = req.params
+    console.log(req.params)
     const matches = await db.get_job_matches(jobID)
-    res.status(200).json(matches)
+    console.log(matches)
+    res.status(200).send(matches)
   },
 
   getDetails: async(req,res)=>{

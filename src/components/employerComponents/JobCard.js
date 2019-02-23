@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Suggestions from './Suggestions'
+import Matches from './Matches'
 import axios from 'axios'
 
 class JobCard extends Component{
@@ -7,29 +8,47 @@ class JobCard extends Component{
     super()
     this.state = {
       suggestions: [],
-      showSuggestion: false
+      matches: [],
+      showSuggestion: false,
+      showMatches: false
     }
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     let id = this.props.id
-    axios.get(`/search/job/users/${+id}`).then((res)=>{
+    await axios.get(`/search/job/users/${+id}`).then((res)=>{
       this.setState({suggestions:res.data})
-      console.log(this.state.suggestions)
+    })
+    
+    await axios.get(`/employer/job/matches/${+id}`).then((res)=>{
+      console.log(res.data)
+      this.setState({matches:res.data})
     })
   }
 
-  showToggle = ()=>{
+  suggestionsToggle = ()=>{
     this.state.showSuggestion? this.setState({showSuggestion:false}):this.setState({showSuggestion:true})
+  }
+
+  matchesToggle = ()=>{
+    this.state.showMatches? this.setState({showMatches:false}): this.setState({showMatches:true})
   }
   
   render(){
     let buttonText = this.state.showSuggestion? "Hide Suggestion":"Show Suggestions"
 
+    let matchButtonText = this.state.showMatches? "Hide Matches":"Show matches"
+
     const suggestion = ()=>{
       if(this.state.showSuggestion){
         return <Suggestions jobID = {this.props.id} suggestions = {this.state.suggestions}/>
       } 
+    }
+
+    const match = ()=>{
+      if(this.state.showMatches){
+        return <Matches jobID = {this.props.id}  matches = {this.state.matches}/>
+      }
     }
 
     return(
@@ -40,10 +59,12 @@ class JobCard extends Component{
         <p>{this.props.description}</p>
         <p>{this.props.duration}</p>
         <p>{this.props.price}</p>
-        <button onClick = {()=>{this.showToggle()}}>{buttonText}</button>
+        <button onClick = {()=>{this.suggestionsToggle()}}>{buttonText}</button>
+        <button onClick = {()=>{this.matchesToggle()}}>{matchButtonText}</button>
         <button>Delete</button>
       </div> 
       {suggestion()}
+      {match()}
 
       </div>
     )

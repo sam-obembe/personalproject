@@ -23,22 +23,34 @@ class Suggestions extends Component {
     let {count} = this.state
     let suggestions = this.props.suggestions
     const sugg = suggestions[count]
-    return(
-      <div>
-        <div className = "workerCard">
-          <img src = {sugg.profilepictureurl} alt = ""></img>
-          <h3>{sugg.firstname} {sugg.lastname}</h3>
-          <p>{sugg.user_bio}</p>
-          <p>{sugg.socialnetworkurl}</p>
-          <p>{sugg.city} {sugg.state} {sugg.country}</p>
-          <div className = "iconSpace">
-          <i className="fas fa-thumbs-down"/>
-          <i className="fas fa-thumbs-up" onClick = {()=>this.clickHandle()}/> 
+    const toShow = ()=>{
+      if(suggestions.length===0){
+        return  <h1>No suggestions yet</h1>
+      }
+      else{
+        return(
+          <div>
+          <div className = "workerCard">
+            <img src = {sugg.profilepictureurl} alt = ""></img>
+            <h3>{sugg.firstname} {sugg.lastname}</h3>
+            <p>{sugg.user_bio}</p>
+            <p>{sugg.socialnetworkurl}</p>
+            <p>{sugg.city} {sugg.state} {sugg.country}</p>
+            <div className = "iconSpaceEmployer">
+            <i className="fas fa-thumbs-down fa-2x"/>
+            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.clickHandle()}/> 
+            </div>
+          
           </div>
         
-        </div>
-       
-      </div>
+          </div>
+        )
+      }
+  }
+
+  return(
+    toShow()
+ 
     )
   }
 }

@@ -85,3 +85,12 @@ h1, h2, p {
   margin-left: 110px;
   margin-top: 20px;
 }
+
+.iconSpaceEmployer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 150px;
+  margin-left: 40px;
+  /* margin-top: 150px; */
+}

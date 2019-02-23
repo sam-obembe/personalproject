@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import User from './User'
 import Employer from './Employer'
 import {connect} from 'react-redux'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Home extends Component{
   componentDidMount(){
@@ -14,10 +16,15 @@ class Home extends Component{
       return <User/>
     }
   }
+  
+  logout=()=>{
+    axios.post("/logout")
+  }
 
   render(){
     return(
       <div>
+        <Link to = "/"><h3 onClick = {()=>{}}>Logout</h3></Link>
         {/* <h1>Welcome Home</h1> */}
        {this.toShow()}
       </div>

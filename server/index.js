@@ -40,7 +40,7 @@ app.get("/search/jobs", uc.getjobs) //get all jobs that match a user's interests
 app.get("/user/likes",uc.getLikes)//get a user's likes 
 app.post("/user/like/:jobID", uc.likeJob) //like a job, needs more work
 app.get("/user/matches", uc.getMatches)
-app.get("/user/details", uc.getDetails)
+app.get("/user/details", uc.getDetails)//get a user's details
 
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details
@@ -48,7 +48,7 @@ app.get(`/search/job/users/:jobID`, ec.getUsers) //get all users interested in a
 app.get("/employer/postedJobs", ec.listjobs) //list all jobs
 app.post("/employer/jobs", ec.postJob) //post a job
 app.post("/employer/job/like/:userID", ec.likeUser) //like a user for a job
-app.get("/employer/job/matches", ec.getJobMatches)
+app.get("/employer/job/matches/:jobID", ec.getJobMatches)
 app.get("/employer/jobScopes",ec.getJobScopes)
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))

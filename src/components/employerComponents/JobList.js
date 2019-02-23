@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import JobCard from './JobCard'
+import {Link} from 'react-router-dom'
 
 class JobList extends Component{
   constructor(){
@@ -13,14 +14,17 @@ class JobList extends Component{
   render(){
 
     return(
-      this.props.jobs.map((job,i)=>{
+      <div>
+        <Link to = "/home"><h1>Home</h1></Link>
+      {this.props.jobs.map((job,i)=>{
         return(
           <div key = {i} >
           <JobCard id = {job.job_id}title={job.title} description = {job.description} duration = {job.duration} price = {job.price}/>
 
           </div>
         )
-      })
+      })}
+      </div>
     )
   }
   
