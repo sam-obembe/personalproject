@@ -1,6 +1,6 @@
 UPDATE matches
 SET match = NULL
-WHERE user_id = userId AND job_id = jobID
+WHERE user_id = $1 AND job_id = $2
 AND( SELECT COUNT (*) FROM matches 
-WHERE user_id = userID
-AND job_id = jobID) = 1
+WHERE user_id = $1
+AND job_id = $2) = 1

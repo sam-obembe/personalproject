@@ -33,6 +33,11 @@ class JobCard extends Component{
   matchesToggle = ()=>{
     this.state.showMatches? this.setState({showMatches:false}): this.setState({showMatches:true})
   }
+
+  deleteJob = ()=>{
+    let jobID = this.props.id
+    axios.delete(`/employer/${jobID}`).then(()=>alert("Deleted Job"))
+  }
   
   render(){
     let buttonText = this.state.showSuggestion? "Hide Suggestion":"Show Suggestions"
@@ -59,9 +64,9 @@ class JobCard extends Component{
         <p>{this.props.description}</p>
         <p>{this.props.duration}</p>
         <p>{this.props.price}</p>
-        <button onClick = {()=>{this.suggestionsToggle()}}>{buttonText}</button>
-        <button onClick = {()=>{this.matchesToggle()}}>{matchButtonText}</button>
-        <button>Delete</button>
+        <button onClick = {()=>this.suggestionsToggle()}>{buttonText}</button>
+        <button onClick = {()=>this.matchesToggle()}>{matchButtonText}</button>
+        <button onClick = {()=>this.deleteJob()}>Delete</button>
       </div> 
       {suggestion()}
       {match()}

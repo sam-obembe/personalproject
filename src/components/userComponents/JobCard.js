@@ -40,9 +40,9 @@ class JobCard extends Component{
           <p>{this.props.user_suggestions[i].price}</p>
           <div className = "iconSpace">
               
-            <i class="fas fa-thumbs-down fa-3x" onClick = {()=>{this.clickToggle()}}/>
+            <i className="fas fa-thumbs-down fa-3x" onClick = {()=>{this.clickToggle()}}/>
 
-            <i class="fas fa-thumbs-up fa-3x" onClick = {()=>{
+            <i className="fas fa-thumbs-up fa-3x" onClick = {()=>{
                 this.likeJob(this.props.user_suggestions[i].job_id)
             }}/> 
             </div>

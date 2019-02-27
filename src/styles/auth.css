@@ -60,11 +60,12 @@ input {
   background-color: transparent;
   border-left:none;
   border-right: none;
-  border-top:none
+  border-top:none;
+  outline: none;
 }
 
-input:focus{
-  scale: 1.5;
+input:hover{
+  transform: scale(1.05);
   animation: underline 1.5s;
   /* border-bottom-color: green */
 }

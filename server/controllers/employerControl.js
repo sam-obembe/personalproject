@@ -37,7 +37,7 @@ module.exports = {
 
   likeUser: async(req,res)=>{
     const db = req.app.get('db')
-    const {jobID} = req.body
+    const {jobID} = req.params
     const {userID} = req.params
     const liked = await db.like_user(userID,jobID).catch(()=>db.trigger_match(userID,jobID))
     res.status(200).send(liked)
@@ -46,9 +46,7 @@ module.exports = {
   getJobMatches: async(req,res)=>{
     const db = req.app.get('db')
     const {jobID} = req.params
-    console.log(req.params)
     const matches = await db.get_job_matches(jobID)
-    console.log(matches)
     res.status(200).send(matches)
   },
 
@@ -63,6 +61,21 @@ module.exports = {
     const db = req.app.get('db')
     const scopes = await db.get_job_scopes();
     res.status(200).send(scopes)
+  },
+
+  unMatchUser: async(req,res)=>{
+    const db = req.app.get('db')
+    const {userID, jobID} = req.params
+    const matchUpdate = await db.trigger_unmatch(userID, jobID).then(db.get_job_matches(jobID))
+    res.status(200).send(matchUpdate)
+  },
+
+  deleteJob: async(req,res)=>{
+    const db = req.app.get('db')
+    const {jobID} = req.params
+    const {id} = req.session.user
+    const deleted = await db.delete_job(jobID,id)
+    res.status(200).send(deleted)
   }
 }
 

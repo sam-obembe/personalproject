@@ -3,7 +3,7 @@ module.exports = {
     const db = req.app.get('db')
     //run sql query that gets all jobs that match a user's interests, using the user ID stored in session as a parameter
     const jobs = await db.get_jobs(req.session.user.id)
-    console.log(jobs)
+   
     //send back the result of the query which was stored in a variable called jobs
     res.status(200).json(jobs)
   },
@@ -43,5 +43,30 @@ module.exports = {
     const {id} = req.session.user
     const likes = await db.get_user_likes(id)
     res.status(200).send(likes)
+  },
+
+  editProfile: async(req,res)=>{
+    const db = req.app.get('db')
+    const{firstname,lastname,user_bio,dob,city,state,country,phonenumber,emailaddress,socialnetworkurl,profilepictureurl} = req.body
+
+    const {id} = req.session.user
+    const changes = await db.edit_user_profile(id,firstname,lastname,dob,city,state,country,phonenumber,emailaddress,socialnetworkurl,profilepictureurl,user_bio)
+    res.status(200).send(changes).catch(err=>console.log(err))
+  },
+
+  getInterests: async(req,res)=>{
+    const db = req.app.get('db')
+    const{id} = req.session.user
+    const interest = await db.get_user_interests(id)
+    res.status(200).send(interest)
+  },
+
+  deleteInterest: async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    console.log(req.params)
+    const {scope_id} = req.params
+    await db.delete_user_interest(+scope_id,+id)
+    res.status(200).send(scope_id)
   }
 }

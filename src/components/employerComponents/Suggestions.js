@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 
 class Suggestions extends Component {
   constructor(){
@@ -7,6 +7,12 @@ class Suggestions extends Component {
     this.state = {
       count: 0
     }
+  }
+
+  likeUser = ()=>{
+    let jobID = this.props.jobID
+    let userID = this.props.suggestions[this.state.count].user_id
+    axios.post(`/employer/like/${jobID}/${userID}`).then(()=>this.clickHandle())
   }
 
   clickHandle=()=>{
@@ -37,8 +43,8 @@ class Suggestions extends Component {
             <p>{sugg.socialnetworkurl}</p>
             <p>{sugg.city} {sugg.state} {sugg.country}</p>
             <div className = "iconSpaceEmployer">
-            <i className="fas fa-thumbs-down fa-2x"/>
-            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.clickHandle()}/> 
+            <i className="fas fa-thumbs-down fa-2x" onClick = {()=>this.clickHandle()}/>
+            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.likeUser()}/> 
             </div>
           
           </div>

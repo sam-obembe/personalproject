@@ -1,22 +1,39 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
+import EditProfile from './EditProfile'
+import UserDetails from './UserDetails'
+import {Link} from 'react-router-dom'
 
 class Profile extends Component{
+  constructor(){
+    super()
+    this.state = {
+      shouldEdit : false
+    }
+  }
+
+  edit=()=>{
+    this.state.shouldEdit? this.setState({shouldEdit:false}):this.setState({shouldEdit:true})
+  }
+
   render(){
+    const toShow = ()=>{
+      if(!this.state.shouldEdit){
+        return(
+          <UserDetails/>
+        )
+      }else{
+        return <EditProfile displayToggle = {this.edit}/>
+      }
+    }
+
     return(
       <div>
-        <p>{this.props.firstname}</p>
-        <p>{this.props.lastname}</p>
-        <p>{this.props.dob}</p>
-        <p>{this.props.city}</p>
-        <p>{this.props.state}</p>
-        <p>{this.props.country}</p>
-        <p>{this.props.phonenumber}</p>
-        <p>{this.props.emailaddress}</p>
-        <p>{this.props.socialnetworkurl}</p>
-        <p>{this.props.user_bio}</p>
-        <p>{this.props.profilepictureurl}</p>
+        <Link to = "/home"><h1>Back</h1></Link>
+      {toShow()}
+      <button onClick = {()=>{this.edit()}}>EditProfile</button>
       </div>
+   
     )
   }
 }

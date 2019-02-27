@@ -20,9 +20,10 @@ app.use(session({
   secret: process.env.AGENT,
   resave: true,
   saveUninitialized: false,
-  cookie: {
-    expires: 1000*7*24*60*60
-  }
+  expires: 7*24*60*60*1000
+  // cookie: {
+  //   expires: 1000*7*24*60*60
+  // }
 }))
 
 
@@ -41,14 +42,19 @@ app.get("/user/likes",uc.getLikes)//get a user's likes
 app.post("/user/like/:jobID", uc.likeJob) //like a job, needs more work
 app.get("/user/matches", uc.getMatches)
 app.get("/user/details", uc.getDetails)//get a user's details
+app.put("/user/profile/edit",uc.editProfile)//edit a user's profile
+app.get("/user/interests",uc.getInterests) //get a user's interests
+app.delete("/user/interest/delete/:scope_id", uc.deleteInterest)//delete a user's interes
 
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details
 app.get(`/search/job/users/:jobID`, ec.getUsers) //get all users interested in a job
 app.get("/employer/postedJobs", ec.listjobs) //list all jobs
 app.post("/employer/jobs", ec.postJob) //post a job
-app.post("/employer/job/like/:userID", ec.likeUser) //like a user for a job
-app.get("/employer/job/matches/:jobID", ec.getJobMatches)
+app.delete("/employer/:jobID", ec.deleteJob) //delete a job
+app.post("/employer/like/:jobID/:userID", ec.likeUser) //like a user for a job
+app.get("/employer/job/matches/:jobID", ec.getJobMatches)//get matches for a job
+app.post("/employer/job/unmatch/:jobID/:userID", ec.unMatchUser)//unmatch a user
 app.get("/employer/jobScopes",ec.getJobScopes)
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))
