@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import JobSuggestions from './userComponents/JobSuggestions'
-import Likes from './userComponents/Likes'
-import Matches from './userComponents/Matches'
+import JobSuggestions from './userComponents/jobs/JobSuggestions'
+import Likes from './userComponents/likes/Likes'
+import Matches from './userComponents/matches/Matches'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests} from '../ducks/reducers/userReducer'
+import {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests,getJobScopes} from '../ducks/reducers/userReducer'
 import '../styles/user.css'
 
 
@@ -16,6 +16,7 @@ class User extends Component{
       this.props.getUserLikes()
       this.props.getUserMatches()
       this.props.getUserInterests()
+      this.props.getJobScopes()
   }
 
   render(){
@@ -38,7 +39,7 @@ function mapStateToProps(state){
   return state.userReducer
 }
 
-export default connect(mapStateToProps, {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests})(User);
+export default connect(mapStateToProps, {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests,getJobScopes})(User);
 
 
 /*

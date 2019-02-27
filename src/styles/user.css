@@ -148,6 +148,22 @@ h1, h2, p {
   color: white
 }
 
+.addInterests{
+  border-radius: 30px;
+  height: 500px;
+  width: 500px;
+  background-color: #1f1c1c;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  z-index: 3;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  margin-right: -60%;
+  bottom:50%;
+}
+
 i{
   margin-left:70px;
   margin-right: 0;

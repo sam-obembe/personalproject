@@ -68,5 +68,11 @@ module.exports = {
     const {scope_id} = req.params
     await db.delete_user_interest(+scope_id,+id)
     res.status(200).send(scope_id)
+  },
+
+  getJobScopes : async(req,res)=>{
+    const db = req.app.get('db')
+    const scopes = await db.get_job_scopes()
+    res.status(200).send(scopes)
   }
 }

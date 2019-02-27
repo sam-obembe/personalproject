@@ -29,9 +29,11 @@ class JobCard extends Component{
 
   render(){
     let i = this.state.position
-    return(
-    <div>
-      <div className = "jobSuggestContainer">
+    const toShow = () =>{if(this.props.user_suggestions.length===0){
+      return <h1>No suggestions yet</h1>
+    }else{
+      return(
+        <div className = "jobSuggestContainer">
       <Link to = "/home"><h1>Back</h1></Link>
         <div className = "jobcard" key = {i}>
           <h2>{this.props.user_suggestions[i].title}</h2>
@@ -49,6 +51,12 @@ class JobCard extends Component{
             
           </div>
       </div>
+      )
+    }}
+    return(
+    <div>
+      <Link to = "/home"><h1>Back</h1></Link>
+      {toShow()}
     </div>
       
     )

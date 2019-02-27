@@ -44,6 +44,7 @@ app.get("/user/matches", uc.getMatches)
 app.get("/user/details", uc.getDetails)//get a user's details
 app.put("/user/profile/edit",uc.editProfile)//edit a user's profile
 app.get("/user/interests",uc.getInterests) //get a user's interests
+app.get("/user/jobScopes",uc.getJobScopes)//get job scopes for user
 app.delete("/user/interest/delete/:scope_id", uc.deleteInterest)//delete a user's interes
 
 //employer endpoints

@@ -7,12 +7,7 @@ function mapStateToProps(state){
 }
 
 const UserDetails = (props)=>{
-  // const interests =()=>{
-  //   props.userInterests.map((interest,i)=>{
-  //     console.log(interest)
-  //     return <p key = {i}>{interest.scope_name}</p>
-  //   })
-  // }
+
   return(
     <div className =  "userProfile">
       <div className = "userbio">

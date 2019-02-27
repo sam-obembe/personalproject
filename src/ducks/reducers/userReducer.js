@@ -17,7 +17,8 @@ const userDet = {
   user_suggestions:[],
   userLikedJobs: [],
   userMatches: [],
-  userInterests:[]
+  userInterests:[],
+  jobScopes:[]
 }
 
 
@@ -27,6 +28,7 @@ const userDet = {
   const GET_USER_LIKES = "GET_USER_LIKES"
   const GET_USER_MATCHES = "GET_USER_MATCHES"
   const GET_USER_INTERESTS = "GET_USER_INTERESTS"
+  const GET_JOB_SCOPES = "GET_JOB_SCOPES"
  
 
   //Action creator
@@ -65,6 +67,13 @@ const userDet = {
     }
   }
 
+  export const getJobScopes = ()=>{
+    return{
+      type: GET_JOB_SCOPES,
+      payload:  axios.get("/user/jobScopes")
+    }
+  }
+
 
   export default function userReducer(state =userDet, action){
     switch(action.type){
@@ -82,6 +91,8 @@ const userDet = {
       
       case `${GET_USER_INTERESTS}_FULFILLED`:
         return Object.assign({},state, {userInterests:action.payload.data})
+      case `${GET_JOB_SCOPES}_FULFILLED`:
+        return Object.assign({},state,{jobScopes:action.payload.data})
       default : return state
     }
 
