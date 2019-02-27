@@ -46,6 +46,7 @@ app.put("/user/profile/edit",uc.editProfile)//edit a user's profile
 app.get("/user/interests",uc.getInterests) //get a user's interests
 app.get("/user/jobScopes",uc.getJobScopes)//get job scopes for user
 app.delete("/user/interest/delete/:scope_id", uc.deleteInterest)//delete a user's interes
+app.post("/user/interest/addInterest",uc.addInterest)//add a user's interest
 
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details

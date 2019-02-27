@@ -11,7 +11,11 @@ const InterestSelect = (props)=>{
       {
         props.jobScopes.map((scope,i)=>{
           return(
-            <p key = {i}>{scope.scope_name}<span><i className = "fas fa-plus" onClick = {()=>props.add(scope.scope_name)}/></span></p>
+            <p key = {i}>{scope.scope_name}<span><i className = "fas fa-plus" onClick = {()=>{
+              props.add(scope.scope_name)
+              props.submit(scope.scope_id)
+            }
+          }/></span></p>
           )
         })
       }

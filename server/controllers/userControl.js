@@ -74,5 +74,13 @@ module.exports = {
     const db = req.app.get('db')
     const scopes = await db.get_job_scopes()
     res.status(200).send(scopes)
+  },
+
+  addInterest: async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const {scope_id} = req.body
+    const addInterest = await db.add_user_interest(id,scope_id)
+    res.status(200).send("interest added")
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import InterestSelect from './InterestSelect'
 import {connect} from 'react-redux'
 
@@ -18,8 +18,10 @@ class AddInterests extends Component {
     this.setState({interests:newInterests})
   }
 
-  submitInterests = ()=>{
-    
+  submitInterest = (id)=>{
+    axios.post("/user/interest/addInterest",{scope_id:id}).then(
+      (res)=>console.log(res.data)
+    )
   }
   render(){
     const selectedInterests = ()=>{
@@ -37,7 +39,7 @@ class AddInterests extends Component {
     return(
       <div className = "addInterests">
         <div>
-          <InterestSelect add = {this.addInterest}/>
+          <InterestSelect add = {this.addInterest} submit = {this.submitInterest}/>
         </div>
         <div>
           {selectedInterests()}

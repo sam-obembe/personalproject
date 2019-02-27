@@ -162,6 +162,11 @@ h1, h2, p {
   left: 30%;
   margin-right: -60%;
   bottom:50%;
+  overflow: scroll;
+}
+
+.addInterests p span{
+  margin-left: -30px;
 }
 
 i{
