@@ -64,7 +64,6 @@ module.exports = {
   deleteInterest: async(req,res)=>{
     const db = req.app.get('db')
     const {id} = req.session.user
-    console.log(req.params)
     const {scope_id} = req.params
     await db.delete_user_interest(+scope_id,+id)
     res.status(200).send(scope_id)
@@ -82,5 +81,21 @@ module.exports = {
     const {scope_id} = req.body
     const addInterest = await db.add_user_interest(id,scope_id)
     res.status(200).send("interest added")
-  }
+  },
+
+  addPortfolio: async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const {photos} = req.body
+    const toInsert = []
+    await photos.map((photo)=>{
+      return toInsert.push({user_id:id, picture_id:photo})
+    })
+    await db.portfolio.insert(toInsert,(err,res)=>{
+      console.log(err)
+      console.log(res)
+    })
+    res.status(200).send(toInsert)
+  },
+
 }

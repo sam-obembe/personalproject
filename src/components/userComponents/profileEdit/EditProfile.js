@@ -6,7 +6,7 @@ import UserBioEdit from './UserBioEdit'
 import UserAddressEdit from './UserAddressEdit'
 import UserContactEdit from './UserContactEdit'
 import UserInterestDelete from './UserInterestDelete'
-
+import ChooseProfilePicture from './ChooseProfilePicture'
 
 class EditProfile extends Component{
   constructor(){
@@ -59,13 +59,22 @@ class EditProfile extends Component{
     )
   }
 
+  setProfilePic = async (e)=>{
+    await this.setState({profilepictureurl:e})
+    console.log(this.state.profilepictureurl)
+  }
+
   
   render(){
     const {firstname, lastname, user_bio,dob, city, state, country, phonenumber, emailaddress, profilepictureurl,socialnetworkurl} = this.state
     
     return(
       <div className =  "userProfile">
-    
+      
+         <div className = "chooseProfilePicture">
+          <ChooseProfilePicture setPicture ={this.setProfilePic}/>
+        </div>
+
         <UserBioEdit firstname = {firstname} lastname = {lastname} user_bio ={user_bio} dob = {dob} profilepictureurl = {profilepictureurl} inputHandle = {this.inputHandle} />
 
         <div className = "userProfileSec2">

@@ -1,13 +1,36 @@
 require("dotenv").config()
 const express = require('express')
 const app = express()
+const {google} = require('googleapis')
 const bodyParser = require("body-parser")
 const massive = require("massive")
 const session = require("express-session")
-const ac = require("./controllers/authControl") //controller file for authorisation and setting session
+const cors = require('cors')
+
+const ac = require("./controllers/authControl") 
 const uc = require("./controllers/userControl")
 const ec = require("./controllers/employerControl")
+const gc = require("./controllers/googleControl")
+
 const port = process.env.S_PATH
+const clientID = process.env.G_CLIENT_ID
+const sec = process.env.G_CLIENT_SEC
+const redirect = process.env.REDIRECT
+
+const oauth2Client = new google.auth.OAuth2(clientID,sec,redirect)
+const authURL = oauth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: "https://www.googleapis.com/auth/photoslibrary.readonly"
+})
+
+app.use(cors({
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'origin': '*',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+  }))
+
 
 app.use(bodyParser.json())
 
@@ -21,11 +44,19 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   expires: 7*24*60*60*1000
-  // cookie: {
-  //   expires: 1000*7*24*60*60
-  // }
 }))
 
+
+//endpoints to OAuth and googleAPI
+app.get("/", async(req,res)=>{
+  res.status(200).send(authURL)
+})
+
+app.post("/credcheck",gc.getCode,gc.swapToken) //swap auth code for token
+
+app.get("/user/profile/userGooglePhotos",gc.getPhotos)//getPhotos
+app.get("/user/profile/userGooglePhotos/next/:pageToken",gc.getMorePhotos)
+app.get("/user/profile/profilepic/:picID",gc.getProfilePic)
 
 //signups
 app.post("/register/user", ac.userSignup)
@@ -47,6 +78,8 @@ app.get("/user/interests",uc.getInterests) //get a user's interests
 app.get("/user/jobScopes",uc.getJobScopes)//get job scopes for user
 app.delete("/user/interest/delete/:scope_id", uc.deleteInterest)//delete a user's interes
 app.post("/user/interest/addInterest",uc.addInterest)//add a user's interest
+app.post("/user/portfolio",uc.addPortfolio)//add items to a user's portfolio
+app.get("/user/portfolio",gc.getPortfolio)
 
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details
@@ -58,5 +91,6 @@ app.post("/employer/like/:jobID/:userID", ec.likeUser) //like a user for a job
 app.get("/employer/job/matches/:jobID", ec.getJobMatches)//get matches for a job
 app.post("/employer/job/unmatch/:jobID/:userID", ec.unMatchUser)//unmatch a user
 app.get("/employer/jobScopes",ec.getJobScopes)
+
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))

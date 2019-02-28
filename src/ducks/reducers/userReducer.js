@@ -13,12 +13,18 @@ const userDet = {
   emailaddress: "",
   socialnetworkurl: "",
   profilepictureurl: "",
+  actualurl: "",
   user_bio: "",
   user_suggestions:[],
   userLikedJobs: [],
   userMatches: [],
   userInterests:[],
-  jobScopes:[]
+  jobScopes:[],
+  userPortfolio: [],
+  access_token: "",
+  authurl: "",
+  googlePhotos: [],
+  nextToken: ""
 }
 
 
@@ -29,6 +35,13 @@ const userDet = {
   const GET_USER_MATCHES = "GET_USER_MATCHES"
   const GET_USER_INTERESTS = "GET_USER_INTERESTS"
   const GET_JOB_SCOPES = "GET_JOB_SCOPES"
+  const SET_AUTH_URL = "SET_AUTH_URL"
+  const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
+  const SET_ACCESS_TOKEN = "SET_ACCESS_TOKEN"
+  const GET_GOOGLE_PHOTOS = "GET_GOOGLE_PHOTOS"
+  const GET_MORE_PHOTOS = "GET_MORE_PHOTOS"
+  const GET_USER_PORTFOLIO = "GET_USER_PORTFOLIO"
+  
  
 
   //Action creator
@@ -74,6 +87,48 @@ const userDet = {
     }
   }
 
+  export const setAuthUrl = ()=>{
+    return{
+      type: SET_AUTH_URL,
+      payload: axios.get("http://localhost:4000")
+    }
+  }
+
+  export const setAccessToken = (url)=>{
+    return{
+      type: SET_ACCESS_TOKEN,
+      payload: axios.post("/credcheck",{url})
+    }
+  }
+
+  export const setProfilePicture = (id)=>{
+    return{
+      type: SET_PROFILE_PICTURE,
+      payload:  axios.get(`/user/profile/profilepic/${id}`)
+    }
+  }
+
+  export const getGooglePhotos = ()=>{
+    return{
+      type: GET_GOOGLE_PHOTOS,
+      payload: axios.get("/user/profile/userGooglePhotos")
+    }
+  }
+
+  export const getMorePhotos = (token)=>{
+    return{
+      type: GET_MORE_PHOTOS,
+      payload: axios.get(`/user/profile/userGooglePhotos/next/${token}`)
+    }
+  }
+
+  export const getUserPortfolio = ()=>{
+    return{
+      type: GET_USER_PORTFOLIO,
+      payload: axios.get(`/user/portfolio`)
+    }
+  }
+
 
   export default function userReducer(state =userDet, action){
     switch(action.type){
@@ -91,8 +146,29 @@ const userDet = {
       
       case `${GET_USER_INTERESTS}_FULFILLED`:
         return Object.assign({},state, {userInterests:action.payload.data})
+
       case `${GET_JOB_SCOPES}_FULFILLED`:
         return Object.assign({},state,{jobScopes:action.payload.data})
+
+      case `${SET_PROFILE_PICTURE}_FULFILLED`:
+        return Object.assign({},state,{actualurl:action.payload.data.baseUrl})
+      
+      case `${SET_AUTH_URL}_FULFILLED`:
+        return Object.assign({},state,{authurl:action.payload.data})
+
+      case `${SET_ACCESS_TOKEN}_FULFILLED`:
+        return Object.assign({},state,{access_token:action.payload.data})
+      
+      case `${GET_GOOGLE_PHOTOS}_FULFILLED`:
+        return Object.assign({},state,{
+          googlePhotos:action.payload.data.mediaItems,
+          nextToken: action.payload.data.nextPageToken})
+      case `${GET_MORE_PHOTOS}_FULFILLED`:
+        return Object.assign({},state,{
+          googlePhotos: state.googlePhotos.concat(action.payload.data.mediaItems),
+          nextToken:action.payload.data.nextPageToken})
+      case `${GET_USER_PORTFOLIO}_FULFILLED`:
+          return Object.assign({},state,{userPortfolio:action.payload.data})
       default : return state
     }
 

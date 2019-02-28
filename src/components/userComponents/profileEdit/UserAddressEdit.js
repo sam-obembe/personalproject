@@ -14,3 +14,9 @@ const UserAddressEdit = (props)=>{
 }
 
 export default UserAddressEdit
+
+/*
+props.city
+props.state
+props.country
+ */

@@ -54,7 +54,7 @@ module.exports = {
   },
 
   //user login controller
-  userLogin: async (req,res)=>{
+  userLogin: async (req,res,next)=>{
     const {email,password} = req.body
     const db = req.app.get("db")
     const user = await db.find_user(email)
@@ -77,6 +77,7 @@ module.exports = {
         res.status(401).send("wrong email address or password")
       }
     }
+    next()
  
   },
 

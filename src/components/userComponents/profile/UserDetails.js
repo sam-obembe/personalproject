@@ -1,51 +1,91 @@
-import React from 'react'
+import React,{Component} from 'react'
 import {connect} from 'react-redux'
+import UserBio from './UserBio'
+import UserAddress from './UserAddress'
+import UserContact from './UserContact'
+import UserInterest from './UserInterest'
+import Portfolio from '../portolio/Portfolio'
+import {setAuthUrl, setAccessToken} from '../../../ducks/reducers/userReducer'
+// import axios from 'axios'
+class UserDetails extends Component{
+  constructor(){
+    super()
+    this.state = {
+      authorized: false,
+    }
+  }
 
+  componentDidMount(){
+    let reg = /code=4/
+    let present = reg.test(window.location.href)
+    const authProcess = async()=>{
+      await this.props.setAuthUrl()
+      window.location.href = this.props.authurl
+      // await this.props.setAccessToken(window.location.href)
+    }
+    if(this.props.actualurl===""){
+      if(!present & this.props.authurl===""){ 
+        authProcess()
+      }else if(this.props.authurl !=="" & present){
+        this.props.setAccessToken(window.location.href)
+      } else{
+        this.props.setAccessToken(window.location.href)
+      }
+    } 
+  
+  }
+
+  render(){
+
+    return(
+   
+      <div className =  "userProfile">
+
+        <UserBio/>
+  
+        <div className = "userProfileSec2">
+          <UserAddress/>
+          <UserContact/>
+          <UserInterest/>
+  
+        </div> 
+  
+        <Portfolio/>
+        
+      </div>
+    )
+  }
+  
+}
 
 function mapStateToProps(state){
   return state.userReducer
 }
 
-const UserDetails = (props)=>{
+export default connect(mapStateToProps,{setAuthUrl,setAccessToken}) (UserDetails)
 
-  return(
-    <div className =  "userProfile">
-      <div className = "userbio">
-        <img src = {props.profilepictureurl} alt="profilepicture"/>
-        <h3>Name</h3>
-        <p>{props.firstname} {props.lastname}</p>
-        <h3>Bio</h3>
-        <p>{props.user_bio}</p>
-        <h3>Date of birth</h3>
-        <p>{props.dob}</p>
-      </div>
 
-      <div className = "userProfileSec2">
-        <div className = "userAddress">
-          <h3>Location</h3>
-          <p>{props.city}</p>
-          <p>{props.state}</p>
-          <p>{props.country}</p>
-        </div>
+  // async componentDidMount(){
+  //   let url = window.location.href
+  //   let reg = /code=4/
+  //   let present = reg.test(url)
+  //   const authProcess = ()=>{
+  //     if(!present && !this.state.authorized){
+  //       axios.get("http://localhost:4000").then(
+  //         async(res)=>{
+  //           console.log(res.data)
+  //           window.location.href = res.data
 
-        <div className = "userContact">
-          <h3>Contact</h3>
-          <p>Phone number: {props.phonenumber}</p>
-          <p>Email address: {props.emailaddress}</p>
-          <p></p>
-          <button><a href = {props.socialnetworkurl} > Social Media</a></button>
-        </div>
+  //           let newurl = res.data
+  //           await axios.post("/credcheck",{newurl}).then(res=>{ 
+  //             console.log(res.data)
+  //             this.setState({authorized:true})
+  //           })
+  //         }
+  //       )
+  //     }
+  //   }
+  //   await authProcess()
+  // }
 
-        <div className = "userInterest">
-          <h3>Interests</h3>
-          {
-            props.userInterests.map((interest,i)=> <p key = {i}>{interest.scope_name}</p>)
-          }
-        </div>
-      
-      </div> 
-    </div>
-  )
-}
 
-export default connect(mapStateToProps) (UserDetails)

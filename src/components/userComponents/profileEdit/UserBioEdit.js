@@ -1,10 +1,13 @@
 import React from 'react'
+// import SeeGooglePhotos from '../portolio/SeeGooglePhotos'
+// import ChooseProfilePicture from './ChooseProfilePicture'
 
 const UserBioEdit = (props)=>{
   return(
     <div className = "userbio">
          
-    <input type = "text" value = {props.profilepictureurl} name = "profilepictureurl" onChange = {(e)=>props.inputHandle(e)} placeholder = "Profile Picture url"/>
+    {/* <input type = "text" value = {props.profilepictureurl} name = "profilepictureurl" onChange = {(e)=>props.inputHandle(e)} placeholder = "Profile Picture url"/> */}
+   
     <input type = "text" value = {props.firstname} name = "firstname" onChange = {(e)=>props.inputHandle(e)} placeholder = "First name"/>
 
     <input type = "text" value  = {props.lastname} name = "lastname" onChange = {(e)=>props.inputHandle(e)} placeholder = "Last name"/>
@@ -18,3 +21,10 @@ const UserBioEdit = (props)=>{
 }
 
 export default UserBioEdit
+
+/*
+props.firstname
+props.lastname
+props.user_bio
+props.dob
+*/
