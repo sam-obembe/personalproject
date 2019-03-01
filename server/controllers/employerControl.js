@@ -76,6 +76,19 @@ module.exports = {
     const {id} = req.session.user
     const deleted = await db.delete_job(jobID,id)
     res.status(200).send(deleted)
+  },
+
+  getUserDetails: async(req,res)=>{
+    const db = req.app.get('db')
+    const {userID} = req.params
+    const userDets = await db.get_user_details(userID)
+    const userPortfolio = await db.get_user_portfolio(userID)
+    const extractedPortfolio = userPortfolio.map((pics)=>pics.picture_id)
+    const toSend = Object.assign({},userDets[0],{portfolio:extractedPortfolio})
+    // console.log(userDets)
+    // console.log(userPortfolio)
+    console.log(toSend)
+    res.status(200).send(toSend)
   }
 }
 

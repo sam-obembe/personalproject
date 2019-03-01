@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import '../../../styles/user.css'
 
 function mapStateToProps(state){
   return state.userReducer
@@ -8,8 +9,11 @@ function mapStateToProps(state){
 
 const MatchesList = (props)=>{
   return(
-    <div>
-      <Link to = "/home">Back</Link>
+    <div className = "matchesmain">
+      <div className = "header">
+        <Link to = "/home"><h3>Back</h3></Link>
+      </div>
+      
       {props.userMatches.map((job,i)=>{
           return(
             <div key = {i} className = "miniCard">

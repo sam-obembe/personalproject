@@ -84,6 +84,7 @@ app.get("/user/portfolio",gc.getPortfolio)
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details
 app.get(`/search/job/users/:jobID`, ec.getUsers) //get all users interested in a job
+app.get(`/employer/selecteduser/:userID`,ec.getUserDetails) //get a selected user's details
 app.get("/employer/postedJobs", ec.listjobs) //list all jobs
 app.post("/employer/jobs", ec.postJob) //post a job
 app.delete("/employer/:jobID", ec.deleteJob) //delete a job

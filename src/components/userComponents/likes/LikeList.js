@@ -9,7 +9,10 @@ function mapStateToProps(state){
 const LikeList = (props)=>{
   return(
       <div>
-       <Link to ="/Home">Back</Link>
+        <div className = "header">
+          <Link to ="/Home"><h3>Back</h3></Link>
+        </div>
+       
       <div className = "likelist">
         
         {props.userLikedJobs.map((job,i)=>{

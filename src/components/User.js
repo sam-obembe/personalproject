@@ -2,9 +2,10 @@ import React, {Component} from 'react'
 import JobSuggestions from './userComponents/jobs/JobSuggestions'
 import Likes from './userComponents/likes/Likes'
 import Matches from './userComponents/matches/Matches'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests,getJobScopes} from '../ducks/reducers/userReducer'
+import UserHeader from './userComponents/UserHeader'
 import '../styles/user.css'
 
 
@@ -21,15 +22,19 @@ class User extends Component{
 
   render(){
     return(
+      <div>
+        <UserHeader/>
       <div className = "outline">
+        
         <h1>Welcome {this.props.firstname}</h1>
-        <Link to = "/userProfile">See profile</Link>
+        {/* <Link to = "/userProfile">See profile</Link> */}
         <div className = "usermain">
           
           <JobSuggestions/>
           <Likes/>
           <Matches/>
         </div>
+      </div>
       </div>
     )
   }

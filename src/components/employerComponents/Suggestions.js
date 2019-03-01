@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {selectUser,setUserDetails} from '../../ducks/reducers/employerReducer'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 class Suggestions extends Component {
   constructor(){
@@ -25,6 +28,10 @@ class Suggestions extends Component {
    
   }
 
+  seeProfile=(id)=>{
+    this.props.selectUser(id)
+  }
+
   render(){
     let {count} = this.state
     let suggestions = this.props.suggestions
@@ -44,7 +51,15 @@ class Suggestions extends Component {
             <p>{sugg.city} {sugg.state} {sugg.country}</p>
             <div className = "iconSpaceEmployer">
             <i className="fas fa-thumbs-down fa-2x" onClick = {()=>this.clickHandle()}/>
-            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.likeUser()}/> 
+            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.likeUser()}/>
+            <Link to = "/employer/userProfilePage">
+            <button onClick = {async()=>{
+               await this.seeProfile(sugg.user_id)
+               await this.props.setUserDetails(sugg.user_id)
+            }}>
+            See profile
+            </button> 
+            </Link>
             </div>
           
           </div>
@@ -61,4 +76,7 @@ class Suggestions extends Component {
   }
 }
 
-export default Suggestions
+function mapStateToProps(state){
+  return state.employerReducer
+}
+export default connect(mapStateToProps,{selectUser,setUserDetails}) (Suggestions)

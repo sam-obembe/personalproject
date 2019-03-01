@@ -34,6 +34,14 @@ h1, h2, p {
   /* margin-left: 5% */
 }
 
+.matchesmain{
+  display: flex;
+  flex-direction: space-between;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100vw;
+}
+
 .tile{
   min-width: 150px;
   max-width: 25vw;

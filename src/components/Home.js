@@ -23,11 +23,13 @@ class Home extends Component{
 
   render(){
     return(
+  
       <div>
-        <Link to = "/"><h3 onClick = {()=>{}}>Logout</h3></Link>
-        {/* <h1>Welcome Home</h1> */}
-       {this.toShow()}
-      </div>
+        {this.toShow()}
+        <h3 onClick = {()=>{}} > <Link to = "/">Logout</Link>  </h3>
+       </div>
+       
+ 
 
     )
   }

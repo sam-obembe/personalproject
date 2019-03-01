@@ -55,7 +55,10 @@ class JobCard extends Component{
     }}
     return(
     <div>
-      <Link to = "/home"><h1>Back</h1></Link>
+      <div className = "header">
+        <Link to = "/home"><h2>Back</h2></Link>
+      </div>
+      
       {toShow()}
     </div>
       

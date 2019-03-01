@@ -13,6 +13,7 @@ import JobCreateForm from './components/employerComponents/JobCreateForm'
 import JobList from './components/employerComponents/JobList'
 import Suggestions from './components/employerComponents/Suggestions'
 import SeeGooglePhotos from './components/userComponents/portolio/SeeGooglePhotos'
+import UserProfilePage from './components/employerComponents/UserProfile/UserProfilePage'
 
 
 
@@ -32,6 +33,7 @@ export default(
       <Route exact path = "/employer" component = {EmployerAuth}/> */}
       <Route exact path = "/" component = {Landing}/>
       <Route exact path = "/seeGooglePhotos" component = {SeeGooglePhotos}/>
+      <Route exact path = "/employer/userProfilePage" component={UserProfilePage}/>
     </Switch>
  
 )

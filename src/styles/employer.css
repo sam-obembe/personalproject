@@ -25,6 +25,7 @@ h1, h2, p {
   width: 600px;
   border-radius: 10px;
   margin-top: 100px;
+  max-width: 90vw;
 }
 
 .jobCreate input {
@@ -93,4 +94,12 @@ h1, h2, p {
   width: 150px;
   margin-left: 40px;
   /* margin-top: 150px; */
+}
+
+@media(max-width:500px){
+  .employermain{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+  }
 }

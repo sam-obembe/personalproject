@@ -50,7 +50,7 @@ class JobCreateForm extends Component{
 
   render(){
     return(
-      <div>
+      <div className = "employermain">
       <Link to = "/home"><h1>Home</h1></Link>
       <div className = "jobCreate">
         <h2>Post a New Job</h2>
