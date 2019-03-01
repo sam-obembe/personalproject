@@ -1,23 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+@viewport{
+  min-width: 300px;
+  min-height: 568px;
+  max-width: 1000px;
+  max-height: 750px
+}
+
 h1, h2, p {
   font-family: 'Work Sans', sans-serif
 }
 
-.usermain{
+.outline{
   width: 100vw;
+  height: 100vh;
+  background-color: #f9f9f9;
+  padding-left: 10vh;
+  padding-right: 10vh
+}
+
+.usermain{
+  max-width: 100vw;
   height: 100vh;
    /* background-image: url('../../landingImage.jpg');  */
   background-color: #f9f9f9;
   background-size: cover;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  margin-top:0;
+  /* margin-left: 5% */
 }
 
 .tile{
-  width: 400px;
-  height: 500px;
+  min-width: 150px;
+  max-width: 25vw;
+  min-height: 40vw;
   background-color: #1f1c1c;
   border-radius: 20px;
   color: white;
@@ -39,7 +59,7 @@ h1, h2, p {
 }
 
 .likelist{
-  width: 1000px;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -48,8 +68,11 @@ h1, h2, p {
   margin-top: 50px;
 }
 .miniCard{
-  height: 150px;
-  width: 400px;
+  /* height: 150px;
+  width: 400px; */
+  min-width: 150px;
+  min-height: 300px;
+  max-width: 60vw;
   background-color: #1f1c1c;
   display: block;
   padding: 20px;
@@ -61,17 +84,22 @@ h1, h2, p {
 }
 
 .jobSuggestContainer {
+  min-width: 100vw;
+  min-height: 80vh;
   /* height: 100vh; */
   /* display: flex; */
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 10vw;
   /* margin-top: 30px; */
   /* flex-wrap: wrap; */
 }
 
 .jobcard{
-  width: 400px;
-  height: 450px;
+  min-width: 250px;
+  min-height: 400px;
+  max-width: 25vw;
+  max-height: auto;
   /* position: relative; */
   /* margin-left: 5px; */
   /* margin-top: 5px; */
@@ -86,8 +114,9 @@ h1, h2, p {
   flex-direction: row;
   justify-content: space-around;
   width: 150px;
-  margin-left: 90px;
-  margin-top: 150px;
+  /* margin-left: 90px; */
+  margin-top: 10px;
+  position: fixed
 }
 
 .userProfile{
@@ -104,7 +133,7 @@ h1, h2, p {
 }
 
 .userbio{
-  width: 400px;
+  width: 350px;
   height: 100vh;
   background-color: rgb(209, 209, 209);
   margin: 20px;
@@ -117,7 +146,7 @@ h1, h2, p {
 }
 
 .userbio img{
-  width: 100%
+  width: 50%
 }
 
 .userbio:hover{
@@ -227,6 +256,7 @@ h1, h2, p {
 i{
   margin-left:70px;
   margin-right: 0;
+ 
 }
 
 i:hover{
@@ -241,6 +271,25 @@ i:hover{
 @keyframes expand{
   from {height:0px}
   to {height: 450px}
+}
+
+@media(min-width:850px){
+  .usermain{
+    flex-wrap: wrap;  
+  }
+
+}
+
+@media(max-width:850px){
+  .usermain{
+    margin-left:25vw
+  }
+}
+
+@media(max-width:450px){
+  .usermain{
+    margin-left:10vw
+  }
 }
 
 

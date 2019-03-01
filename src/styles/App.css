@@ -2,6 +2,21 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
+@viewport{
+  min-width: 300px;
+  min-height: 568px;
+  max-width: 1000px;
+  max-height: 750px
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
 h1, h2 {
   font-family: 'Raleway', sans-serif
   /*  */
@@ -11,39 +26,45 @@ p{
   font-family: 'Work Sans', sans-serif
 }
  
- #App {
+ .App {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between; 
+  /* flex-wrap: wrap;  */
+  /* align-items: center;
+  justify-content: space-between;  */
   background-color: #f9f9f9; 
-  height: 100vh; 
-  width: 100vw 
+  min-height: 99vh; 
+  max-width: 99vw; 
+  padding:0;
+  /* margin: 10%; */
 }  
 .landing{
   /* background-image: url('./landingImage.jpg');
   background-size: cover; */
   background-image: linear-gradient(to top, rgb(221, 218, 218) 0%, #e4e8ec 100%);
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh; 
   color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-top: -25px;
+  /* margin-top: -25px; */
 }
 
 .landingText{
   background-color: rgb(34, 33, 33);
-  width: 400px;
-  height: 500px;
-  padding-top: 2%;
+  min-width: 50vw;
+  min-height: 50vh;
+  max-width: 60vw;
+  max-height: 70vh;
+  /* padding-top: 2%; */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .landingText h1{
@@ -54,13 +75,14 @@ p{
 
 .header{
   background-color: #343d46;
-  width : 800px;
+  width : 100vw;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   z-index: 10;
   opacity: 0.9;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .header a:hover{

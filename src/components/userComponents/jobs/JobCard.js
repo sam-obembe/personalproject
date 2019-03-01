@@ -34,7 +34,7 @@ class JobCard extends Component{
     }else{
       return(
         <div className = "jobSuggestContainer">
-      <Link to = "/home"><h1>Back</h1></Link>
+      {/* <Link to = "/home"><h1>Back</h1></Link> */}
         <div className = "jobcard" key = {i}>
           <h2>{this.props.user_suggestions[i].title}</h2>
           <p>{this.props.user_suggestions[i].description}</p>

@@ -21,7 +21,7 @@ class User extends Component{
 
   render(){
     return(
-      <div>
+      <div className = "outline">
         <h1>Welcome {this.props.firstname}</h1>
         <Link to = "/userProfile">See profile</Link>
         <div className = "usermain">

@@ -45,9 +45,8 @@ class  EmployerSignup extends Component {
       return <Redirect to = "/home"/>
     }
     return(
-      <div className = "signupForm">
-        <form>
-
+      <div className = "signUpForm">
+    
         <input placeholder = "Name" type = "text" name = "employer_name" onChange = {(e)=> this.inputChange(e)} value = {this.state.employer_name}/>
 
           <input placeholder = "City" type = "text" name = "city" onChange = {(e)=>this.inputChange(e)} value = {this.state.city}/>
@@ -61,9 +60,9 @@ class  EmployerSignup extends Component {
           <input placeholder = "Phone Number" type = "text" name = "employer_number" onChange = {(e)=>this.inputChange(e)} value = {this.state.employer_number} />
 
           <input placeholder = "Password" type = "password" name = "password" onChange = {(e)=>this.inputChange(e)} value = {this.state.password}/>
-            
-        </form>
-        <button onClick = {()=>this.submission()}>Register</button>  
+          <button onClick = {()=>this.submission()}>Register</button>  
+ 
+       
       </div>
     )
   }
