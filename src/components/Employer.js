@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getEmployerInfo,getPostedJobs} from '../ducks/reducers/employerReducer'
 import JobCreate from '../components/employerComponents/JobCreate'
 import SeeJobs from './employerComponents/SeeJobs'
+import EmployerHeader from './employerComponents/EmployerHeader'
 import '../styles/employer.css'
 
 class Employer extends Component{
@@ -13,6 +14,7 @@ class Employer extends Component{
   render(){
     return(
       <div>
+        <EmployerHeader/>
         <h2>Welcome {this.props.employer_name}</h2>
         <div className = "employermain">
           <JobCreate/>

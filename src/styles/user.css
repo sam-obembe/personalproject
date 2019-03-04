@@ -43,9 +43,9 @@ h1, h2, p {
 }
 
 .tile{
-  min-width: 150px;
+  min-width: 250px;
   max-width: 25vw;
-  min-height: 40vw;
+  min-height: 35vw;
   background-color: #1f1c1c;
   border-radius: 20px;
   color: white;

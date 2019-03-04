@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {selectUser,setUserDetails} from '../../ducks/reducers/employerReducer'
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 class Suggestions extends Component {
   constructor(){
@@ -12,10 +12,12 @@ class Suggestions extends Component {
     }
   }
 
-  likeUser = ()=>{
+  likeUser = async ()=>{
     let jobID = this.props.jobID
     let userID = this.props.suggestions[this.state.count].user_id
-    axios.post(`/employer/like/${jobID}/${userID}`).then(()=>this.clickHandle())
+    await axios.post(`/employer/like/${jobID}/${userID}`).then(()=>{
+      this.clickHandle()
+    })
   }
 
   clickHandle=()=>{
@@ -39,27 +41,30 @@ class Suggestions extends Component {
     const toShow = ()=>{
       if(suggestions.length===0){
         return  <h1>No suggestions yet</h1>
-      }
-      else{
+      } else{
         return(
           <div>
           <div className = "workerCard">
-            <img src = {sugg.profilepictureurl} alt = ""></img>
+            {/* <img src = {sugg.profilepictureurl} alt = ""></img> */}
             <h3>{sugg.firstname} {sugg.lastname}</h3>
             <p>{sugg.user_bio}</p>
             <p>{sugg.socialnetworkurl}</p>
             <p>{sugg.city} {sugg.state} {sugg.country}</p>
             <div className = "iconSpaceEmployer">
             <i className="fas fa-thumbs-down fa-2x" onClick = {()=>this.clickHandle()}/>
-            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>this.likeUser()}/>
-            <Link to = "/employer/userProfilePage">
+            <i className="fas fa-thumbs-up fa-2x" onClick = {async()=>{
+              await this.likeUser()
+              await this.clickHandle()
+            }
+            }/>
+            {/* <Link to = "/employer/userProfilePage">
             <button onClick = {async()=>{
                await this.seeProfile(sugg.user_id)
                await this.props.setUserDetails(sugg.user_id)
             }}>
             See profile
             </button> 
-            </Link>
+            </Link> */}
             </div>
           
           </div>

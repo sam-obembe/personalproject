@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 const massive = require("massive")
 const session = require("express-session")
 const cors = require('cors')
+// const nodemailer = require('nodemailer')
 
 const ac = require("./controllers/authControl") 
 const uc = require("./controllers/userControl")
@@ -16,6 +17,7 @@ const port = process.env.S_PATH
 const clientID = process.env.G_CLIENT_ID
 const sec = process.env.G_CLIENT_SEC
 const redirect = process.env.REDIRECT
+
 
 const oauth2Client = new google.auth.OAuth2(clientID,sec,redirect)
 const authURL = oauth2Client.generateAuthUrl({
@@ -72,6 +74,7 @@ app.get("/search/jobs", uc.getjobs) //get all jobs that match a user's interests
 app.get("/user/likes",uc.getLikes)//get a user's likes 
 app.post("/user/like/:jobID", uc.likeJob) //like a job, needs more work
 app.get("/user/matches", uc.getMatches)
+app.delete("/user/matches/delete/:jobID",uc.deleteMatchOrLike)
 app.get("/user/details", uc.getDetails)//get a user's details
 app.put("/user/profile/edit",uc.editProfile)//edit a user's profile
 app.get("/user/interests",uc.getInterests) //get a user's interests
@@ -92,6 +95,7 @@ app.post("/employer/like/:jobID/:userID", ec.likeUser) //like a user for a job
 app.get("/employer/job/matches/:jobID", ec.getJobMatches)//get matches for a job
 app.post("/employer/job/unmatch/:jobID/:userID", ec.unMatchUser)//unmatch a user
 app.get("/employer/jobScopes",ec.getJobScopes)
+app.put("/employer/profile/edit",ec.editProfile)
 
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))

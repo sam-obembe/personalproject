@@ -14,11 +14,11 @@ class JobList extends Component{
   render(){
 
     return(
-      <div>
+      <div className = "jobListMain">
         <Link to = "/home"><h1>Home</h1></Link>
       {this.props.jobs.map((job,i)=>{
         return(
-          <div key = {i} >
+          <div key = {i} className = "jobListMain">
           <JobCard id = {job.job_id}title={job.title} description = {job.description} duration = {job.duration} price = {job.price}/>
 
           </div>

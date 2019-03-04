@@ -1,3 +1,18 @@
+require('dotenv').config()
+const nodemailer = require('nodemailer')
+const transporter = nodemailer.createTransport({
+  host: "smtp.mail.yahoo.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASS
+  }
+})
+
+
+
+
 module.exports = {
   getUsers: async(req,res)=>{
     const db = req.app.get("db")
@@ -39,7 +54,28 @@ module.exports = {
     const db = req.app.get('db')
     const {jobID} = req.params
     const {userID} = req.params
-    const liked = await db.like_user(userID,jobID).catch(()=>db.trigger_match(userID,jobID))
+    const emailAddress = await db.get_employer_email(jobID)
+    const userDetails = await db.get_user_details(userID)
+    const jobDetails = await db.get_job_details(jobID)
+    const liked = await db.like_user(userID,jobID).catch(async()=>await db.trigger_match(userID,jobID).then(()=>{
+      transporter.sendMail({
+        from : process.env.EMAIL,
+        to: [userDetails[0].emailAddress,emailAddress[0].employer_email],
+        subject: "New user Match",
+        text: `you have matched
+        Job Details:
+        ${jobDetails[0].title}
+        ${jobDetails[0].description}
+        ${jobDetails[0].duration}
+        ${jobDetails[0].price}
+        User Details:
+        ${userDetails[0].firstname} ${userDetails[0].lastname}
+        ${userDetails[9]}.bio
+        `
+      },(err,info)=>{
+        if(err){ console.log (err) } else{console.log(info)}
+    })
+    }))
     res.status(200).send(liked)
   },
 
@@ -89,7 +125,17 @@ module.exports = {
     // console.log(userPortfolio)
     console.log(toSend)
     res.status(200).send(toSend)
+  },
+
+  editProfile : async(req,res)=>{
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    const{employer_name,employer_bio,employer_number,employer_email,city,state,country} = req.body
+    await db.edit_employer_profile(id,employer_name,employer_bio,employer_number,employer_email,city,state,country)
+    res.status(200).send(`successfully changed`)
   }
+    
+
 }
 
 

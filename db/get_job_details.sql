@@ -1,0 +1,1 @@
+SELECT title,description,duration,price FROM job WHERE job_id = $1

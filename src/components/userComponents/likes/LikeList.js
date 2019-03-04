@@ -1,9 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {getUserLikes} from '../../../ducks/reducers/userReducer'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 function mapStateToProps(state){
   return state.userReducer
+}
+
+const deleteLike = (id)=>{
+  axios.delete(`/user/matches/delete/${id}`).then((res)=>{
+    console.log(res.data)
+  })
 }
 
 const LikeList = (props)=>{
@@ -20,6 +28,10 @@ const LikeList = (props)=>{
             <div key = {i} className = "miniCard">
               <h3 > {job.title}, {job.duration}, {job.price} </h3>
               <p>{job.description}</p>
+              <button onClick = {async()=>{
+                await deleteLike(job.job_id)
+                await props.getUserLikes()
+                }}>Delete like</button>
             </div>
           )
         })}
@@ -28,7 +40,7 @@ const LikeList = (props)=>{
   )
 }
 
-export default connect(mapStateToProps) (LikeList)
+export default connect(mapStateToProps,{getUserLikes}) (LikeList)
 
 /**
  This renders a list of jobs a user has liked . The list is gotten from an array userLikedJobs which is located in the userReducer. 

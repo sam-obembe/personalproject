@@ -24,9 +24,11 @@ class Home extends Component{
   render(){
     return(
   
-      <div>
+      <div className = "homeMain">
         {this.toShow()}
-        <h3 onClick = {()=>{}} > <Link to = "/">Logout</Link>  </h3>
+        <div>
+          <h3 onClick = {()=>{}} id = "logout"> <Link to = "/">Logout</Link>  </h3>
+        </div>
        </div>
        
  

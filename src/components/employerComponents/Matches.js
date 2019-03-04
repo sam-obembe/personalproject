@@ -13,6 +13,15 @@ class Matches extends Component{
     axios.post(`/employer/job/unmatch/${jobID}/${userID}`)
   }
 
+  nextMatch =()=>{
+    if(this.props.matches.length>1 && this.state.count<this.props.matches.length-1){
+      let newCount = this.state.count + 1
+      this.setState({count:newCount})
+    }else{
+      this.setState({count:0})
+    }
+  }
+
   render(){
     let matches = this.props.matches
     let {count} = this.state
@@ -29,7 +38,16 @@ class Matches extends Component{
             <p>{matches[count].country}</p>
             <p>{matches[count].phonenumber}</p>
             <p>{matches[count].emailaddress}</p>
-            <button onClick = {()=>this.unmatch(matches[count].user_id,this.props.jobID)}>Unmatch</button>
+            <div>
+              <button onClick = {async ()=>{
+                await this.unmatch(matches[count].user_id,this.props.jobID)
+                await this.props.getMatch()
+                }}>Unmatch</button>
+            </div>
+            <div>
+              <button onClick = {()=>{this.nextMatch()}}>Next</button>
+            </div>
+            
           </div>
         
         )

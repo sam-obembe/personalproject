@@ -15,14 +15,22 @@ class JobCard extends Component{
   }
 
   async componentDidMount(){
+    await this.getUsers()
+    await this.getMatches()
+  }
+
+  getUsers = async ()=>{
     let id = this.props.id
-    await axios.get(`/search/job/users/${+id}`).then((res)=>{
+    axios.get(`/search/job/users/${+id}`).then((res)=>{
       this.setState({suggestions:res.data})
     })
-    
-    await axios.get(`/employer/job/matches/${+id}`).then((res)=>{
+  }
+
+  getMatches = async ()=>{
+    let id = this.props.id
+    axios.get(`/employer/job/matches/${+id}`).then((res)=>{
       console.log(res.data)
-      this.setState({matches:res.data})
+      this.setState({matches: res.data})
     })
   }
 
@@ -38,21 +46,22 @@ class JobCard extends Component{
     let jobID = this.props.id
     axios.delete(`/employer/${jobID}`).then(()=>alert("Deleted Job"))
   }
+
   
   render(){
-    let buttonText = this.state.showSuggestion? "Hide Suggestion":"Show Suggestions"
+    let buttonText = this.state.showSuggestion? "Hide Suggestions":"Suggestions"
 
-    let matchButtonText = this.state.showMatches? "Hide Matches":"Show matches"
+    let matchButtonText = this.state.showMatches? "Hide Matches":"Matches"
 
     const suggestion = ()=>{
       if(this.state.showSuggestion){
-        return <Suggestions jobID = {this.props.id} suggestions = {this.state.suggestions}/>
+        return <Suggestions jobID = {this.props.id} suggestions = {this.state.suggestions} getUsers = {this.getUsers}/>
       } 
     }
 
     const match = ()=>{
       if(this.state.showMatches){
-        return <Matches jobID = {this.props.id}  matches = {this.state.matches}/>
+        return <Matches jobID = {this.props.id}  matches = {this.state.matches} getMatch = {this.getMatches}/>
       }
     }
 
