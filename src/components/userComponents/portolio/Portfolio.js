@@ -8,8 +8,7 @@ class Portfolio extends Component{
   pictureRender=()=>{
     return(
       this.props.userPortfolio.map((photo,i)=>{
-        console.log(photo.mediaItem.baseUrl)
-        return <Phototile imgUrl = {photo.mediaItem.baseUrl}/>
+        return <Phototile imgUrl = {photo.mediaItem.baseUrl} key = {i}/>
       })
     )
   }

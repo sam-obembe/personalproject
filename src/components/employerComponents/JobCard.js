@@ -29,7 +29,6 @@ class JobCard extends Component{
   getMatches = async ()=>{
     let id = this.props.id
     axios.get(`/employer/job/matches/${+id}`).then((res)=>{
-      console.log(res.data)
       this.setState({matches: res.data})
     })
   }
@@ -73,9 +72,12 @@ class JobCard extends Component{
         <p>{this.props.description}</p>
         <p>{this.props.duration}</p>
         <p>{this.props.price}</p>
-        <button onClick = {()=>this.suggestionsToggle()}>{buttonText}</button>
-        <button onClick = {()=>this.matchesToggle()}>{matchButtonText}</button>
-        <button onClick = {()=>this.deleteJob()}>Delete</button>
+        <div className = "iconSpaceEmployer">
+          <button onClick = {()=>this.suggestionsToggle()}>{buttonText}</button>
+          <button onClick = {()=>this.matchesToggle()}>{matchButtonText}</button>
+          <button onClick = {()=>this.deleteJob()}>Delete</button>
+        </div>
+        
       </div> 
       {suggestion()}
       {match()}

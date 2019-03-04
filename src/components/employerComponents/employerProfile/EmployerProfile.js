@@ -23,7 +23,7 @@ class EmployerProfile extends Component{
     const toShow = this.state.edit? <EmployerEdit/>:<EmployerDetails/>
     const buttonText = this.state.edit? "Show profile":"EditProfile"
     return(
-      <div>
+      <div className = "employerProfile">
         
         <Link to = "/home"><h2>Back</h2></Link>
         <button onClick = {()=>this.editToggle()}>{buttonText}</button>

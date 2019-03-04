@@ -1,37 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-@viewport{
-  min-width: 300px;
+/* @viewport{
+  min-width: 320px;
   min-height: 568px;
   max-width: 1000px;
   max-height: 750px
-}
+} */
 
 h1, h2, p {
   font-family: 'Work Sans', sans-serif
 }
 
 .outline{
-  width: 100vw;
+  min-width: 300px;
+  /* width: 90vw;
   height: 100vh;
-  background-color: #f9f9f9;
-  padding-left: 10vh;
-  padding-right: 10vh
+  background-color: #f9f9f9; */
+  /* display: flex;
+  flex-direction: column; */
+
+}
+
+.outline h1{
+  margin-left: 10vh
 }
 
 .usermain{
+  min-width: 300px;
+  /* min-width: 275px;
   max-width: 100vw;
-  height: 100vh;
-   /* background-image: url('../../landingImage.jpg');  */
+  height: 90vh;
   background-color: #f9f9f9;
   background-size: cover;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap; 
   margin-top:0;
-  /* margin-left: 5% */
+  align-self: center; 
+  margin-left: 5%  */
 }
 
 .matchesmain{
@@ -78,7 +86,7 @@ h1, h2, p {
 .miniCard{
   /* height: 150px;
   width: 400px; */
-  min-width: 150px;
+  min-width: 250px;
   min-height: 300px;
   max-width: 60vw;
   background-color: #1f1c1c;
@@ -89,16 +97,22 @@ h1, h2, p {
   border: none;
   border-radius: 10px;
   box-shadow: none;
+  word-wrap: break-word;
+}
+
+.miniCard button{
+  color: white;
 }
 
 .jobSuggestContainer {
   min-width: 100vw;
   min-height: 80vh;
   /* height: 100vh; */
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 10vw;
+  align-items: center;
+  /* margin-left: 10vw; */
   /* margin-top: 30px; */
   /* flex-wrap: wrap; */
 }
@@ -127,34 +141,49 @@ h1, h2, p {
   position: fixed
 }
 
+/* .userProfileContain{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+} */
+
 .userProfile{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 50px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* min-width: 300px; */
+  min-width: 95vw;
+  margin-top: 20px;
+  align-items: center;
+  /* flex-wrap: wrap; */
 }
 
 .userProfileSec2{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  align-self: center;
+  /* margin-left: 20%; */
 }
 
 .userbio{
-  width: 350px;
-  height: 100vh;
+  width: 60%;
+  /* height: 500px; */
+  /* height: 100vh; */
   background-color: rgb(209, 209, 209);
-  margin: 20px;
-  padding: 30px;
-  opacity: 0.5;
+  /* margin: 20px; */
+  /* padding: 30px; */
+  opacity: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+  /* align-self: center; */
  
 }
 
 .userbio img{
-  width: 50%
+  width: 40%
 }
 
 .userbio:hover{
@@ -162,11 +191,14 @@ h1, h2, p {
 }
 
 .userAddress{
-  width: 300px;
+  min-width: 300px;
   height: 200px;
   background-color:rgb(250, 249, 249);
-  margin: 20px;
-  padding:30px
+  padding:30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
 }
 
 .userContact{
@@ -210,7 +242,7 @@ h1, h2, p {
 .portfolio{
   background-color: transparent;
   height: 600px;
-  width: 600px;
+  width: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -226,10 +258,15 @@ h1, h2, p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  min-width: 300px;
+  width: 50vw;
+  overflow: scroll;
+  padding-right: 0;
+  justify-content: center
+  /* align-self: center; */
 }
 
 .gPhotosThumb{
- 
   border:1px solid black;
 }
 
@@ -251,10 +288,10 @@ h1, h2, p {
   opacity: 0.6
 }
 
-.chooseProfilePicture{
+/* .chooseProfilePicture{
   overflow: scroll;
   width: 500px
-}
+} */
 
 .choosProfilePicture img{
   width :50px;
@@ -285,6 +322,7 @@ i:hover{
   .usermain{
     flex-wrap: wrap;  
   }
+ 
 
 }
 
@@ -294,9 +332,14 @@ i:hover{
   }
 }
 
-@media(max-width:450px){
+@media(min-width:650px){
   .usermain{
     margin-left:10vw
+  }
+  .userProfile{
+    flex-direction: column;
+    /* margin-left: 20%; */
+    align-items: center;
   }
 }
 

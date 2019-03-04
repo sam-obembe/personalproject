@@ -23,7 +23,7 @@ class SeeGooglePhotos extends Component{
     let newArr = this.state.selected.slice(0)
     await newArr.push(e)
     await this.setState({selected:newArr})
-    console.log(this.state.selected)
+   
   }
 
   addToPortfolio = ()=>{

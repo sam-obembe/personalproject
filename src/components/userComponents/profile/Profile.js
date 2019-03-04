@@ -40,12 +40,10 @@ class Profile extends Component{
     return(
       <div>
         <Link to = "/home"><h1>Back</h1></Link>
-      {toEdit}
-      {toAdd}
-
-      <button onClick = {()=>{this.edit()}}>EditProfile</button>
-      <button onClick = {()=>{this.addInterest()}}>Add Interests </button>
-
+        <button onClick = {()=>{this.edit()}}>EditProfile</button>
+        <button onClick = {()=>{this.addInterest()}}>Add Interests </button>
+        {toEdit}
+        {toAdd}
       </div>
     )
   }

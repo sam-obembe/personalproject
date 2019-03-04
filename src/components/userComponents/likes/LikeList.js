@@ -9,9 +9,7 @@ function mapStateToProps(state){
 }
 
 const deleteLike = (id)=>{
-  axios.delete(`/user/matches/delete/${id}`).then((res)=>{
-    console.log(res.data)
-  })
+  axios.delete(`/user/matches/delete/${id}`)
 }
 
 const LikeList = (props)=>{

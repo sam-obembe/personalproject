@@ -51,20 +51,13 @@ class Suggestions extends Component {
             <p>{sugg.socialnetworkurl}</p>
             <p>{sugg.city} {sugg.state} {sugg.country}</p>
             <div className = "iconSpaceEmployer">
-            <i className="fas fa-thumbs-down fa-2x" onClick = {()=>this.clickHandle()}/>
-            <i className="fas fa-thumbs-up fa-2x" onClick = {async()=>{
+            <i className="fas fa-thumbs-down fa-1.5x" onClick = {()=>this.clickHandle()}/>
+            <i className="fas fa-thumbs-up fa-1.5x" onClick = {async()=>{
               await this.likeUser()
-              await this.clickHandle()
+             
             }
             }/>
-            {/* <Link to = "/employer/userProfilePage">
-            <button onClick = {async()=>{
-               await this.seeProfile(sugg.user_id)
-               await this.props.setUserDetails(sugg.user_id)
-            }}>
-            See profile
-            </button> 
-            </Link> */}
+      
             </div>
           
           </div>
@@ -85,3 +78,14 @@ function mapStateToProps(state){
   return state.employerReducer
 }
 export default connect(mapStateToProps,{selectUser,setUserDetails}) (Suggestions)
+
+/*
+      {/* <Link to = "/employer/userProfilePage">
+            <button onClick = {async()=>{
+               await this.seeProfile(sugg.user_id)
+               await this.props.setUserDetails(sugg.user_id)
+            }}>
+            See profile
+            </button> 
+            </Link> }
+            */

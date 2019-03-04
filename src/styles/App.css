@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-@viewport{
+/* @viewport{
   min-width: 300px;
   min-height: 568px;
   max-width: 1000px;
   max-height: 750px
-}
+} */
 
 body,html {
   margin: 0;
@@ -36,6 +36,7 @@ p{
   min-height: 99vh; 
   max-width: 99vw; 
   padding:0;
+  align-self: center;
   /* margin: 10%; */
 }  
 .landing{

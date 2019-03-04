@@ -10,9 +10,7 @@ function mapStateToProps(state){
 }
 
 const deleteMatch = (id)=>{
-  axios.delete(`/user/matches/delete/${id}`).then((res)=>{
-    console.log(res.data)
-  })
+  axios.delete(`/user/matches/delete/${id}`)
 }
 
 const MatchesList = (props)=>{

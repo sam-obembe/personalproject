@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-// import {setProfilePicture} from '../../../ducks/reducers/userReducer'
+
 
 class UserBio extends Component{
 
