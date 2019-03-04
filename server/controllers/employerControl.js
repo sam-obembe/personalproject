@@ -73,7 +73,7 @@ module.exports = {
         ${userDetails[9]}.bio
         `
       },(err,info)=>{
-        if(err){ console.log (err) } else{console.log(info)}
+        if(err){ console.log (err) }
     })
     }))
     res.status(200).send(liked)
@@ -121,9 +121,6 @@ module.exports = {
     const userPortfolio = await db.get_user_portfolio(userID)
     const extractedPortfolio = userPortfolio.map((pics)=>pics.picture_id)
     const toSend = Object.assign({},userDets[0],{portfolio:extractedPortfolio})
-    // console.log(userDets)
-    // console.log(userPortfolio)
-    console.log(toSend)
     res.status(200).send(toSend)
   },
 

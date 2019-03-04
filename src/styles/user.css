@@ -14,11 +14,11 @@ h1, h2, p {
 
 .outline{
   min-width: 300px;
-  /* width: 90vw;
+  width: 90vw;
   height: 100vh;
-  background-color: #f9f9f9; */
-  /* display: flex;
-  flex-direction: column; */
+  background-color: #f9f9f9; 
+  display: flex; 
+  flex-direction: column;
 
 }
 
@@ -28,18 +28,17 @@ h1, h2, p {
 
 .usermain{
   min-width: 300px;
-  /* min-width: 275px;
-  max-width: 100vw;
+  width: 100vw;
   height: 90vh;
   background-color: #f9f9f9;
   background-size: cover;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   flex-wrap: wrap; 
   margin-top:0;
   align-self: center; 
-  margin-left: 5%  */
+  margin-left: 5% 
 }
 
 .matchesmain{

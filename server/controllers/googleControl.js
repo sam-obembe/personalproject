@@ -49,7 +49,6 @@ module.exports = {
     let media = await axios.get(`https://photoslibrary.googleapis.com/v1/mediaItems?pageToken=${pageToken}`,{
       "headers":{"Authorization":`Bearer ${req.session.tokens.access_token}`}
     }).then(rep=>rep.data).catch(err=>console.log(err))
-    console.log(media)
     res.status(200).send(media)
     next()
   },
@@ -65,7 +64,6 @@ module.exports = {
   getPortfolio: async(req,res)=>{
     try{
       const token = req.session.tokens.access_token
-      console.log(token)
       const db = req.app.get('db')
       const {id} = req.session.user
       const portfolio = await db.get_user_portfolio(id)

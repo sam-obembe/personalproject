@@ -90,7 +90,7 @@ const userDet = {
   export const setAuthUrl = ()=>{
     return{
       type: SET_AUTH_URL,
-      payload: axios.get("http://localhost:4000")
+      payload: axios.get(process.env.REACT_APP_AUTH_PATH)
     }
   }
 

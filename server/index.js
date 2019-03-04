@@ -1,4 +1,5 @@
 require("dotenv").config()
+const path = require('path')
 const express = require('express')
 const app = express()
 const {google} = require('googleapis')
@@ -21,7 +22,7 @@ const redirect = process.env.REDIRECT
 
 const oauth2Client = new google.auth.OAuth2(clientID,sec,redirect)
 const authURL = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
+  access_type: 'online',
   scope: "https://www.googleapis.com/auth/photoslibrary.readonly"
 })
 
@@ -48,6 +49,9 @@ app.use(session({
   expires: 7*24*60*60*1000
 }))
 
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 //endpoints to OAuth and googleAPI
 app.get("/", async(req,res)=>{

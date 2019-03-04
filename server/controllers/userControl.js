@@ -33,7 +33,6 @@ module.exports = {
     const emailaddress = details[0].emailaddress
     const employerEmail = await db.get_employer_email(jobID)
     const properEmployerEmail = employerEmail[0].employer_email
-    console.log(properEmployerEmail)
     const jobDetails = await db.get_job_details(jobID)
     //run the sql query that lets a user like a job, using the jobID and user ID as parameters which will be inserted into a table of matches. If those IDs already exist as a pair in the matches table, run another sql query that triggers a match and matches the user to the job. 
     const liked = await db.like_job(id, jobID).catch(async()=>{
@@ -54,9 +53,7 @@ module.exports = {
           `
         },(err,info)=>{
           if(err){ console.log (err) }
-          else{
-            console.log(info)
-          }
+       
       })
     })
 
