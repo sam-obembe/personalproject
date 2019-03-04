@@ -49,9 +49,7 @@ app.use(session({
   expires: 7*24*60*60*1000
 }))
 
-app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'))
-})
+app.use(express.static(`${__dirname}/../build`))
 
 //endpoints to OAuth and googleAPI
 app.get("/", async(req,res)=>{
