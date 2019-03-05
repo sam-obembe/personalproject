@@ -65,7 +65,7 @@ input {
   border-radius: 0px;
   margin-bottom: 25px;
   margin-top: 0px;
-  font-family: 'Courier Prime Sans';
+  font-family: 'Courier Prime Sans',monospace;
   background-color: transparent;
   border-left:none;
   border-right: none;

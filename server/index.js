@@ -49,12 +49,14 @@ app.use(session({
   expires: 7*24*60*60*1000
 }))
 
+
 app.use(express.static(`${__dirname}/../build`))
 
 //endpoints to OAuth and googleAPI
-app.get("/", async(req,res)=>{
+app.get("/google/auth", async(req,res)=>{
   res.status(200).send(authURL)
 })
+
 
 app.post("/credcheck",gc.getCode,gc.swapToken) //swap auth code for token
 
