@@ -110,8 +110,14 @@ module.exports = {
     const db = req.app.get('db')
     const {jobID} = req.params
     const {id} = req.session.user
-    const deleted = await db.delete_job(jobID,id)
-    res.status(200).send(deleted)
+    try{
+      const deleted = await db.delete_job(jobID,id)
+      res.status(200).send("Job deleted")
+    }
+    catch(err){
+      res.status(200).send("Delete matches first")
+    }
+   
   },
 
   getUserDetails: async(req,res)=>{

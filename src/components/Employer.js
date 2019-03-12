@@ -15,7 +15,7 @@ class Employer extends Component{
     return(
       <div>
         <EmployerHeader/>
-        <h2>Welcome {this.props.employer_name}</h2>
+        <h2 style = {{marginLeft: "25px"}}>Welcome {this.props.employer_name}</h2>
         <div className = "employermain">
           <JobCreate/>
           <SeeJobs/>

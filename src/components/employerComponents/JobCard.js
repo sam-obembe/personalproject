@@ -43,7 +43,10 @@ class JobCard extends Component{
 
   deleteJob = ()=>{
     let jobID = this.props.id
-    axios.delete(`/employer/${jobID}`).then(()=>alert("Deleted Job"))
+    axios.delete(`/employer/${jobID}`).then((res)=>{
+      alert(res.data)
+      console.log(res.data)
+  }).catch(()=>alert("Remove matches first"))
   }
 
   
@@ -75,7 +78,10 @@ class JobCard extends Component{
         <div className = "iconSpaceEmployer">
           <button onClick = {()=>this.suggestionsToggle()}>{buttonText}</button>
           <button onClick = {()=>this.matchesToggle()}>{matchButtonText}</button>
-          <button onClick = {()=>this.deleteJob()}>Delete</button>
+          <button onClick = {async()=>{
+            await this.deleteJob()
+            await this.props.getJobs()
+            }}>Delete</button>
         </div>
         
       </div> 
