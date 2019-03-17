@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

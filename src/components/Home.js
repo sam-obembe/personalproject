@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
+
 class Home extends Component{
   componentDidMount(){
     this.toShow()
@@ -27,7 +28,7 @@ class Home extends Component{
       <div className = "homeMain">
         {this.toShow()}
         <div>
-          <h3 onClick = {()=>{}} id = "logout"> <Link to = "/">Logout</Link>  </h3>
+          <h3 onClick = {()=>this.logout()} id = "logout"> <Link to = "/">Logout</Link>  </h3>
         </div>
        </div>
        

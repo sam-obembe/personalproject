@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import JobSuggestions from './userComponents/jobs/JobSuggestions'
 import Likes from './userComponents/likes/Likes'
 import Matches from './userComponents/matches/Matches'
-// import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUserInfo,updateSuggestions,getUserLikes,getUserMatches,getUserInterests,getJobScopes} from '../ducks/reducers/userReducer'
 import UserHeader from './userComponents/UserHeader'
@@ -24,17 +23,16 @@ class User extends Component{
     return(
       <div>
         <UserHeader/>
-      <div className = "outline">
-        
-        <h1>Welcome {this.props.firstname}</h1>
-        {/* <Link to = "/userProfile">See profile</Link> */}
-        <div className = "usermain">
+        <div className = "outline">
           
-          <JobSuggestions/>
-          <Likes/>
-          <Matches/>
+          <h1>Welcome {this.props.firstname}</h1>
+          <div className = "usermain">
+            
+            <JobSuggestions/>
+            <Likes/>
+            <Matches/>
+          </div>
         </div>
-      </div>
       </div>
     )
   }

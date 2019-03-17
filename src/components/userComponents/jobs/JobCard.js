@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import axios from 'axios';
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import UserHeader from '../UserHeader'
+// import {Link} from 'react-router-dom'
 
 class JobCard extends Component{
 
@@ -34,32 +40,36 @@ class JobCard extends Component{
     }else{
       return(
         <div className = "jobSuggestContainer">
-      {/* <Link to = "/home"><h1>Back</h1></Link> */}
-        <div className = "jobcard" key = {i}>
-          <h2>{this.props.user_suggestions[i].title}</h2>
-          <p>{this.props.user_suggestions[i].description}</p>
-          <p>{this.props.user_suggestions[i].duration}</p>
-          <p>{this.props.user_suggestions[i].price}</p>
-          <div className = "iconSpace">
-              
-            <i className="fas fa-thumbs-down fa-2x" onClick = {()=>{this.clickToggle()}}/>
+          <div style = {{width:"300px",marginTop:"100px"}}>
+          <Card>
+            <CardContent>
+              <Typography variant = "h6"> {this.props.user_suggestions[i].title} </Typography>
+              <Typography variant = "p"> {this.props.user_suggestions[i].description} </Typography>
+              <Typography variant = "p"> {this.props.user_suggestions[i].duration} </Typography>
+              <Typography variant = "p"> {this.props.user_suggestions[i].price} </Typography>
+            </CardContent>
 
-            <i className="fas fa-thumbs-up fa-2x" onClick = {()=>{
-                this.likeJob(this.props.user_suggestions[i].job_id)
-            }}/> 
-            </div>
-            
+            <CardActions>
+              <Button onClick = {()=>this.likeJob(this.props.user_suggestions[i].job_id)}>Like</Button>
+              <Button onClick = {()=>this.clickToggle()}>Dislike</Button>
+            </CardActions>
+   
+          </Card>
           </div>
-      </div>
+  
+      
+        </div> 
       )
     }}
+
     return(
     <div>
-      <div className = "header">
-        <Link to = "/home"><h2>Back</h2></Link>
+      <UserHeader/>
+
+      <div>
+        {toShow()}
       </div>
-      
-      {toShow()}
+
     </div>
       
     )
@@ -73,6 +83,27 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps)(JobCard)
+
+/*
+ <div className = "header">
+    <Link to = "/home"><h2>Back</h2></Link>
+  </div> *
+
+  <div className = "jobcard" key = {i}>
+    <h2>{this.props.user_suggestions[i].title}</h2>
+    <p>{this.props.user_suggestions[i].description}</p>
+    <p>{this.props.user_suggestions[i].duration}</p>
+    <p>{this.props.user_suggestions[i].price}</p>
+
+    <div className = "iconSpace">        
+      <i className="fas fa-thumbs-down fa-2x" onClick = {()=>{this.clickToggle()}}/>
+      <i className="fas fa-thumbs-up fa-2x" onClick = {()=>{this.likeJob(this.props.user_suggestions[i].job_id)}}/> 
+    </div>
+            
+  </div>
+
+*/
+
 
 /*
 This component is a class based component that renders a card that shows job details for a job that matches a user's interest. The user can like or dislike the job. 

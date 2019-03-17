@@ -98,9 +98,11 @@ p{
   height:20%;
   text-decoration: none;
   opacity: 0.8;
-  /* color: white; */
   opacity: 1;
- 
+}
+
+.authNav a{
+  color: white;
 }
 
 .homeMain{
@@ -110,13 +112,19 @@ p{
   height: 100vh;
 }
 
-
-#workerAuthNav{
+.authNav:hover{
+  background-color: white;
+}
+.authNav a:hover{
+  color: black;
+}
+/* #workerAuthNav{
   background-color: transparent;
   text-decoration: none;
   color: white;
-}
+} */
 
+/* 
 #employerAuthNav{
   background-color: transparent;
 }
@@ -126,9 +134,9 @@ p{
 }
 
 #employerAuthNav:hover{
-  /* background-color:white; */
+  /* background-color:white;
   animation: authNavAnimation 2s
-}
+} */
 
 #logout{
   margin-top: 0px;
