@@ -3,7 +3,7 @@ import axios from 'axios'
 import PhotoThumbs from './PhotoThumbs'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getGooglePhotos,getMorePhotos} from '../../../ducks/reducers/userReducer'
+// import {getGooglePhotos,getMorePhotos} from '../../../ducks/reducers/userReducer'
 
 class SeeGooglePhotos extends Component{
   constructor(){
@@ -58,7 +58,8 @@ function mapStateToProps(state){
   return state.userReducer
 }
 
-export default connect(mapStateToProps,{getGooglePhotos,getMorePhotos})(SeeGooglePhotos)
+export default connect(mapStateToProps)(SeeGooglePhotos)
+// export default connect(mapStateToProps,{getGooglePhotos,getMorePhotos})(SeeGooglePhotos)
 
 
 

@@ -13,18 +13,18 @@ const userDet = {
   emailaddress: "",
   socialnetworkurl: "",
   profilepictureurl: "",
-  actualurl: "",
+  // actualurl: "",
   user_bio: "",
   user_suggestions:[],
   userLikedJobs: [],
   userMatches: [],
   userInterests:[],
   jobScopes:[],
-  userPortfolio: [],
-  access_token: "",
-  authurl: "",
-  googlePhotos: [],
-  nextToken: ""
+  // userPortfolio: [],
+  // access_token: "",
+  // authurl: "",
+  // googlePhotos: [],
+  // nextToken: ""
 }
 
 
@@ -35,12 +35,7 @@ const userDet = {
   const GET_USER_MATCHES = "GET_USER_MATCHES"
   const GET_USER_INTERESTS = "GET_USER_INTERESTS"
   const GET_JOB_SCOPES = "GET_JOB_SCOPES"
-  const SET_AUTH_URL = "SET_AUTH_URL"
-  const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
-  const SET_ACCESS_TOKEN = "SET_ACCESS_TOKEN"
-  const GET_GOOGLE_PHOTOS = "GET_GOOGLE_PHOTOS"
-  const GET_MORE_PHOTOS = "GET_MORE_PHOTOS"
-  const GET_USER_PORTFOLIO = "GET_USER_PORTFOLIO"
+ 
   
  
 
@@ -87,7 +82,47 @@ const userDet = {
     }
   }
 
-  export const setAuthUrl = ()=>{
+ 
+
+
+  export default function userReducer(state =userDet, action){
+    switch(action.type){
+      case `${SET_USER_INFO}_FULFILLED`: 
+        return Object.assign({},state,action.payload.data[0]);
+
+      case `${UPDATE_SUGGESTIONS}_FULFILLED`:
+        return Object.assign({},state,{user_suggestions:action.payload.data});
+
+      case `${GET_USER_LIKES}_FULFILLED`:
+        return Object.assign({},state,{userLikedJobs:action.payload.data});
+      
+      case `${GET_USER_MATCHES}_FULFILLED`:
+        return Object.assign({},state, {userMatches:action.payload.data});
+      
+      case `${GET_USER_INTERESTS}_FULFILLED`:
+        return Object.assign({},state, {userInterests:action.payload.data})
+
+      case `${GET_JOB_SCOPES}_FULFILLED`:
+        return Object.assign({},state,{jobScopes:action.payload.data})
+
+      
+      default : return state
+    }
+
+  }
+
+
+  /*
+  const SET_AUTH_URL = "SET_AUTH_URL"
+  const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
+  const SET_ACCESS_TOKEN = "SET_ACCESS_TOKEN"
+  const GET_GOOGLE_PHOTOS = "GET_GOOGLE_PHOTOS"
+  const GET_MORE_PHOTOS = "GET_MORE_PHOTOS"
+  const GET_USER_PORTFOLIO = "GET_USER_PORTFOLIO"
+
+
+
+   export const setAuthUrl = ()=>{
     return{
       type: SET_AUTH_URL,
       payload: axios.get(process.env.REACT_APP_AUTH_PATH)
@@ -130,27 +165,7 @@ const userDet = {
   }
 
 
-  export default function userReducer(state =userDet, action){
-    switch(action.type){
-      case `${SET_USER_INFO}_FULFILLED`: 
-        return Object.assign({},state,action.payload.data[0]);
-
-      case `${UPDATE_SUGGESTIONS}_FULFILLED`:
-        return Object.assign({},state,{user_suggestions:action.payload.data});
-
-      case `${GET_USER_LIKES}_FULFILLED`:
-        return Object.assign({},state,{userLikedJobs:action.payload.data});
-      
-      case `${GET_USER_MATCHES}_FULFILLED`:
-        return Object.assign({},state, {userMatches:action.payload.data});
-      
-      case `${GET_USER_INTERESTS}_FULFILLED`:
-        return Object.assign({},state, {userInterests:action.payload.data})
-
-      case `${GET_JOB_SCOPES}_FULFILLED`:
-        return Object.assign({},state,{jobScopes:action.payload.data})
-
-      case `${SET_PROFILE_PICTURE}_FULFILLED`:
+  case `${SET_PROFILE_PICTURE}_FULFILLED`:
         return Object.assign({},state,{actualurl:action.payload.data.baseUrl})
       
       case `${SET_AUTH_URL}_FULFILLED`:
@@ -169,7 +184,6 @@ const userDet = {
           nextToken:action.payload.data.nextPageToken})
       case `${GET_USER_PORTFOLIO}_FULFILLED`:
           return Object.assign({},state,{userPortfolio:action.payload.data})
-      default : return state
-    }
-
-  }
+  
+  
+  */

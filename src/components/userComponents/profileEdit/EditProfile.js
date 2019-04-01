@@ -6,7 +6,7 @@ import UserBioEdit from './UserBioEdit'
 import UserAddressEdit from './UserAddressEdit'
 import UserContactEdit from './UserContactEdit'
 import UserInterestDelete from './UserInterestDelete'
-import ChooseProfilePicture from './ChooseProfilePicture'
+// import ChooseProfilePicture from './ChooseProfilePicture'
 
 class EditProfile extends Component{
   constructor(){
@@ -71,9 +71,9 @@ class EditProfile extends Component{
     return(
       <div className =  "userProfile">
       
-         <div className = "chooseProfilePicture">
+         {/* <div className = "chooseProfilePicture">
           <ChooseProfilePicture setPicture ={this.setProfilePic}/>
-        </div>
+        </div> */}
 
         <UserBioEdit firstname = {firstname} lastname = {lastname} user_bio ={user_bio} dob = {dob} profilepictureurl = {profilepictureurl} inputHandle = {this.inputHandle} />
 

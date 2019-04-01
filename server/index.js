@@ -1,38 +1,21 @@
 require("dotenv").config()
-const path = require('path')
+// const path = require('path')
 const express = require('express')
 const app = express()
-const {google} = require('googleapis')
+// const {google} = require('googleapis')
 const bodyParser = require("body-parser")
 const massive = require("massive")
 const session = require("express-session")
-const cors = require('cors')
+// const cors = require('cors')
 // const nodemailer = require('nodemailer')
 
 const ac = require("./controllers/authControl") 
 const uc = require("./controllers/userControl")
 const ec = require("./controllers/employerControl")
-const gc = require("./controllers/googleControl")
+// const gc = require("./controllers/googleControl")
 
 const port = process.env.S_PATH
-const clientID = process.env.G_CLIENT_ID
-const sec = process.env.G_CLIENT_SEC
-const redirect = process.env.REDIRECT
 
-
-const oauth2Client = new google.auth.OAuth2(clientID,sec,redirect)
-const authURL = oauth2Client.generateAuthUrl({
-  access_type: 'online',
-  scope: "https://www.googleapis.com/auth/photoslibrary.readonly"
-})
-
-app.use(cors({
-  'allowedHeaders': ['sessionId', 'Content-Type'],
-  'exposedHeaders': ['sessionId'],
-  'origin': '*',
-  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false
-  }))
 
 
 app.use(bodyParser.json())
@@ -53,16 +36,7 @@ app.use(session({
 app.use(express.static(`${__dirname}/../build`))
 
 //endpoints to OAuth and googleAPI
-app.get("/google/auth", async(req,res)=>{
-  res.status(200).send(authURL)
-})
 
-
-app.post("/credcheck",gc.getCode,gc.swapToken) //swap auth code for token
-
-app.get("/user/profile/userGooglePhotos",gc.getPhotos)//getPhotos
-app.get("/user/profile/userGooglePhotos/next/:pageToken",gc.getMorePhotos)
-app.get("/user/profile/profilepic/:picID",gc.getProfilePic)
 
 //signups
 app.post("/register/user", ac.userSignup)
@@ -85,8 +59,8 @@ app.get("/user/interests",uc.getInterests) //get a user's interests
 app.get("/user/jobScopes",uc.getJobScopes)//get job scopes for user
 app.delete("/user/interest/delete/:scope_id", uc.deleteInterest)//delete a user's interes
 app.post("/user/interest/addInterest",uc.addInterest)//add a user's interest
-app.post("/user/portfolio",uc.addPortfolio)//add items to a user's portfolio
-app.get("/user/portfolio",gc.getPortfolio)
+// app.post("/user/portfolio",uc.addPortfolio)//add items to a user's portfolio
+// app.get("/user/portfolio",gc.getPortfolio)
 
 //employer endpoints
 app.get("/employer/info", ec.getDetails) ///get an employer's details
@@ -103,3 +77,38 @@ app.put("/employer/profile/edit",ec.editProfile)
 
 
 app.listen(port, ()=>console.log(`listening on localhost:${port}`))
+
+/*
+Google photos API stuff, removed
+const clientID = process.env.G_CLIENT_ID
+const sec = process.env.G_CLIENT_SEC
+const redirect = process.env.REDIRECT
+
+
+const oauth2Client = new google.auth.OAuth2(clientID,sec,redirect)
+const authURL = oauth2Client.generateAuthUrl({
+  access_type: 'online',
+  scope: "https://www.googleapis.com/auth/photoslibrary.readonly"
+})
+
+app.use(cors({
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'origin': '*',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}))
+
+
+app.get("/google/auth", async(req,res)=>{
+  res.status(200).send(authURL)
+})
+
+
+app.post("/credcheck",gc.getCode,gc.swapToken) //swap auth code for token
+
+app.get("/user/profile/userGooglePhotos",gc.getPhotos)//getPhotos
+app.get("/user/profile/userGooglePhotos/next/:pageToken",gc.getMorePhotos)
+app.get("/user/profile/profilepic/:picID",gc.getProfilePic)
+
+*/

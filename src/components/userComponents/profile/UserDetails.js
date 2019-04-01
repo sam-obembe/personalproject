@@ -4,8 +4,8 @@ import UserBio from './UserBio'
 import UserAddress from './UserAddress'
 import UserContact from './UserContact'
 import UserInterest from './UserInterest'
-import Portfolio from '../portolio/Portfolio'
-import {setAuthUrl, setAccessToken} from '../../../ducks/reducers/userReducer'
+// import Portfolio from '../portolio/Portfolio'
+// import {setAuthUrl, setAccessToken} from '../../../ducks/reducers/userReducer'
 // import axios from 'axios'
 class UserDetails extends Component{
   constructor(){
@@ -16,22 +16,22 @@ class UserDetails extends Component{
   }
 
   componentDidMount(){
-    let reg = /code=4/
-    let present = reg.test(window.location.href)
-    const authProcess = async()=>{
-      await this.props.setAuthUrl()
-      window.location.href = this.props.authurl
-      // await this.props.setAccessToken(window.location.href)
-    }
-    if(this.props.actualurl===""){
-      if(!present & this.props.authurl===""){ 
-        authProcess()
-      }else if(this.props.authurl !=="" & present){
-        this.props.setAccessToken(window.location.href)
-      } else{
-        this.props.setAccessToken(window.location.href)
-      }
-    } 
+    // let reg = /code=4/
+    // let present = reg.test(window.location.href)
+    // const authProcess = async()=>{
+    //   await this.props.setAuthUrl()
+    //   window.location.href = this.props.authurl
+    //   // await this.props.setAccessToken(window.location.href)
+    // }
+    // if(this.props.actualurl===""){
+    //   if(!present & this.props.authurl===""){ 
+    //     authProcess()
+    //   }else if(this.props.authurl !=="" & present){
+    //     this.props.setAccessToken(window.location.href)
+    //   } else{
+    //     this.props.setAccessToken(window.location.href)
+    //   }
+    // } 
   
   }
 
@@ -50,7 +50,7 @@ class UserDetails extends Component{
   
         </div> 
   
-        <Portfolio/>
+        {/* <Portfolio/> */}
         
       </div>
     )
@@ -61,8 +61,9 @@ class UserDetails extends Component{
 function mapStateToProps(state){
   return state.userReducer
 }
+export default connect(mapStateToProps) (UserDetails)
 
-export default connect(mapStateToProps,{setAuthUrl,setAccessToken}) (UserDetails)
+// export default connect(mapStateToProps,{setAuthUrl,setAccessToken}) (UserDetails)
 
 
   // async componentDidMount(){

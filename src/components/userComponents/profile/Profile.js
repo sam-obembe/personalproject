@@ -4,7 +4,8 @@ import EditProfile from '../profileEdit/EditProfile'
 import UserDetails from './UserDetails'
 import AddInterests from '../profileEdit/AddInterests'
 import {Link} from 'react-router-dom'
-import{setUserInfo,setProfilePicture,getJobScopes,getUserInterests,getUserPortfolio} from '../../../ducks/reducers/userReducer'
+// import{setUserInfo,setProfilePicture,getJobScopes,getUserInterests,getUserPortfolio} from '../../../ducks/reducers/userReducer'
+import{setUserInfo,getJobScopes,getUserInterests} from '../../../ducks/reducers/userReducer'
 
 
 class Profile extends Component{
@@ -20,8 +21,8 @@ class Profile extends Component{
     await this.props.setUserInfo()
     await this.props.getJobScopes()
     await this.props.getUserInterests()
-    await this.props.setProfilePicture(this.props.profilepictureurl)
-    await this.props.getUserPortfolio()
+    // await this.props.setProfilePicture(this.props.profilepictureurl)
+    // await this.props.getUserPortfolio()
   }
  
   edit=()=>{
@@ -52,5 +53,6 @@ class Profile extends Component{
 function mapStateToProps(state){
   return state.userReducer
 }
+export default connect(mapStateToProps,{setUserInfo,getJobScopes,getUserInterests})(Profile)
 
-export default connect(mapStateToProps,{setUserInfo,setProfilePicture,getJobScopes,getUserInterests,getUserPortfolio})(Profile)
+// export default connect(mapStateToProps,{setUserInfo,setProfilePicture,getJobScopes,getUserInterests,getUserPortfolio})(Profile)
