@@ -1,16 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is was a personal project, intended to be an imitation of tinder applied to job search. 
+This is a personal project, intended to be an imitation of tinder applied to job search. 
+
+**Code comments are at the bottom of each file.** 
+
 *This site is in the process of being rebuilt and improved.*
 
-# Demo Credentials
+## Worker Login:
 
-To login as a worker, use these credentials:
 email : demo@demo.com
 password: 123456
 
-To login as an employer use these credentials:
-password: demoEmployer@demo.com
+## Employer Login
+
+email: demoEmployer@demo.com
 password: 123456
 
 
